@@ -1,10 +1,15 @@
-var express = require('express');
-var router = express.Router();
+const customerRouter = require('../components/customer');
+const usersRouter = require('./users');
+const studentRouter = require('../components/students');
+const adminRouter = require('../components/admin');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  //throw new Error('Unknown error!');
-  res.render('index', { title: 'Express' });
-});
 
-module.exports = router;
+function route(app) {
+
+    app.use('/', customerRouter);
+    app.use('/admin', adminRouter);
+    app.use('/users', usersRouter);
+    app.use('/students', studentRouter);
+
+}
+module.exports = route;
