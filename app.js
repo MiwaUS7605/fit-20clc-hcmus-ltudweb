@@ -11,12 +11,13 @@ const route = require('./routes');
 const hbs = require('express-handlebars');
 app.engine( 'hbs', hbs.engine( { 
   extname: 'hbs', 
-  defaultLayout: 'layout', 
+  defaultLayout: 'user-layout',
   layoutsDir: __dirname + '/views/layouts/',
   partialsDir: __dirname + '/views/partials/'
 } ) );
 
-app.set('views', path.join(__dirname, 'views'));
+const viewPath = path.join(__dirname, 'views');
+app.set('views', viewPath);
 app.set('view engine', 'hbs');
 
 
