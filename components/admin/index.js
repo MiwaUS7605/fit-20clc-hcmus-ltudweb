@@ -3,15 +3,12 @@ const router = express.Router();
 
 const adminController = require('./AdminController');
 
-router.get('/', adminController.index);
-router.get('/dashboard', adminController.show);
-router.get('/dashboard/profile', adminController.show);
-router.get('/dashboard/basic-table', adminController.show);
-router.get('/dashboard/icon', adminController.show);
-router.get('/dashboard/google-map', adminController.show);
-router.get('/dashboard/blank-page', adminController.show);
-router.get('/dashboard/404', adminController.show);
-
-
+router.get('/', adminController.dashboard);
+router.get('/revenue', adminController.revenue);
+router.get('/basic-table', adminController.list);
+router.get('/icon', adminController.list);
+router.get('/google-map', adminController.list);
+router.get('/blank-page', adminController.list);
+router.get('/404', adminController.list);
 
 module.exports = router;

@@ -1,12 +1,15 @@
 class AdminController {
     //[GET] /admin
-    index(req,res) {
+    dashboard(req,res) {
         res.render('admin/dashboard');
     }
-
-    //[GET] /admin/:slug
-    show(req, res) {
-        res.send("DEEPER");
+    //[GET] /admin/revenue
+    revenue(req, res) {
+        res.render('admin/revenue');
+    }
+    //[GET] /admin/list
+    list(req, res) {
+        res.render('admin/list');
     }
 
 }
