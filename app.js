@@ -3,18 +3,38 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mysql = require('mysql2');
+
+const db = {connection: null};
+async function db_connect() {
+  db.connection = await mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'db_laundry'
+  })
+
+  console.log("Connected\n");
+}
+
+function makeAQuery() {
+  let query_str = 'select * from customer';
+  db.connection.execute(query_str, function (err, results, fields) {console.log(results);})
+}
+
+db_connect().then(makeAQuery);
 
 const app = express();
 const route = require('./routes');
 
 // view engine setup
 const hbs = require('express-handlebars');
-app.engine( 'hbs', hbs.engine( { 
-  extname: 'hbs', 
+app.engine('hbs', hbs.engine({
+  extname: 'hbs',
   defaultLayout: 'user-layout',
   layoutsDir: __dirname + '/views/layouts/',
   partialsDir: __dirname + '/views/partials/'
-} ) );
+}));
 
 const viewPath = path.join(__dirname, 'views');
 app.set('views', viewPath);
@@ -35,17 +55,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 route(app);
 
 // catch 404 and forward to error handler
-app.use(function(req,
-                 res,
-                 next) {
+app.use(function (req,
+  res,
+  next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err,
-                 req,
-                 res,
-                 next) {
+app.use(function (err,
+  req,
+  res,
+  next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
