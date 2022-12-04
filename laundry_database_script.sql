@@ -1,8 +1,11 @@
+CREATE DATABASE  IF NOT EXISTS `db_laundry` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci */;
+USE `db_laundry`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: localhost    Database: db_laundry
 -- ------------------------------------------------------
 -- Server version	5.7.24
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -118,7 +121,7 @@ CREATE TABLE `service` (
   PRIMARY KEY (`idservice`),
   KEY `FK_SERVICE_TYPE_idx` (`idtype`),
   CONSTRAINT `FK_SERVICE_TYPE` FOREIGN KEY (`idtype`) REFERENCES `type` (`idtype`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +130,7 @@ CREATE TABLE `service` (
 
 LOCK TABLES `service` WRITE;
 /*!40000 ALTER TABLE `service` DISABLE KEYS */;
-INSERT INTO `service` VALUES (1,'Wash','\"No information\"',0,1,0,NULL,_binary ''),(2,'Wash','\"No information\"',0,1,0,NULL,_binary ''),(3,'Sanitization','\"No information\"',0,3,0,NULL,_binary ''),(4,'Drying','\"No information\"',0,1,0,NULL,_binary ''),(5,'Hot air drying','\"No information\"',0,1,0,NULL,_binary '');
+INSERT INTO `service` VALUES (1,'Inspection and Sorting','\"No information\"',10000,1,0,NULL,_binary ''),(2,'Stain removal','\"No information\"',20000,1,0,NULL,_binary ''),(3,'Dry cleaning','\"No information\"',50000,1,0,NULL,_binary ''),(4,'Normal temperature Drying','\"No information\"',10000,1,0,NULL,_binary ''),(5,'Pressing and Finishing','\"No information\"',10000,1,0,NULL,_binary ''),(6,'Packaging','\"No information\"',10000,1,0,NULL,_binary ''),(7,'Inspection and Sorting','\"No information\"',10000,2,0,NULL,_binary ''),(8,'Stain removal','\"No information\"',20000,2,0,NULL,_binary ''),(9,'Washing','\"No information\"',30000,2,0,NULL,_binary ''),(10,'Hot air Drying','\"No information\"',20000,2,0,NULL,_binary ''),(11,'Ironing and Finishing','\"No information\"',10000,2,0,NULL,_binary ''),(12,'Packaging','\"No information\"',10000,2,0,NULL,_binary ''),(13,'Inspection and Sorting','\"No information\"',10000,3,0,NULL,_binary ''),(14,'Stain removal','\"No information\"',20000,3,0,NULL,_binary ''),(15,'Soft cleaning','\"No information\"',50000,3,0,NULL,_binary ''),(16,'Normal temperature Drying','\"No information\"',10000,3,0,NULL,_binary ''),(17,'Pressing and Finishing','\"No information\"',10000,3,0,NULL,_binary ''),(18,'Packaging','\"No information\"',10000,3,0,NULL,_binary ''),(19,'Inspection and Sorting','\"No information\"',10000,5,0,NULL,_binary ''),(20,'Stain removal','\"No information\"',20000,5,0,NULL,_binary ''),(21,'Soft cleaning','\"No information\"',50000,5,0,NULL,_binary ''),(22,'Normal temperature Drying','\"No information\"',10000,5,0,NULL,_binary ''),(23,'Pressing and Finishing','\"No information\"',10000,5,0,NULL,_binary ''),(24,'Packaging','\"No information\"',10000,5,0,NULL,_binary ''),(25,'Inspection and Preparing tools','\"No information\"',50000,4,0,NULL,_binary ''),(26,'Stain removal','\"No information\"',20000,4,0,NULL,_binary ''),(27,'Surface cleaning','\"No information\"',50000,4,0,NULL,_binary ''),(28,'New coating','\"No information\"',30000,4,0,NULL,_binary ''),(29,'Sanitization','\"No information\"',20000,4,0,NULL,_binary ''),(30,'Hot air Drying','\"No information\"',20000,4,0,NULL,_binary '');
 /*!40000 ALTER TABLE `service` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-30 20:59:43
+-- Dump completed on 2022-12-04 17:49:43
