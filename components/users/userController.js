@@ -1,6 +1,6 @@
-class userController {
+class UserController {
     home(req,res){
-        res.render('users/users',{ title: 'Home' , layout: 'user-layout'});
+        res.render('users/home',{ title: 'Home' , layout: 'user-layout'});
     }
     checkout(req,res) {
         res.render('users/checkout',{ title: 'Check out', layout: 'user-layout' });
@@ -19,7 +19,7 @@ class userController {
     }
 }
 
-module.exports = new userController;
+module.exports = new UserController;
 
 
 // exports.checkout=(req,res)=>{
