@@ -5,24 +5,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mysql = require('mysql2');
 
-const db = {connection: null};
-async function db_connect() {
-  db.connection = await mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'db_laundry'
-  })
-
-  console.log("Connected\n");
-}
-
-function makeAQuery() {
-  let query_str = 'select * from customer';
-  db.connection.execute(query_str, function (err, results, fields) {console.log(results);})
-}
-
-db_connect().then(makeAQuery);
 
 const app = express();
 const route = require('./routes');

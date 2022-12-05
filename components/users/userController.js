@@ -1,3 +1,6 @@
+const db = require('../../db');
+const serviceController = require('../services/ServiceController');
+
 class UserController {
     home(req,res){
         res.render('users/home',{ title: 'Home' , layout: 'user-layout'});
@@ -11,12 +14,12 @@ class UserController {
     shopingcart(req,res) {
         res.render('users/shoping-cart',{ title: 'Shoping cart', layout: 'user-layout' });
     }
-    shopgrid(req,res) {
-        res.render('users/shop-grid',{ title: 'Shop grid', layout: 'user-layout' });
-    }
-    shopdetails(req,res) {
-        res.render('users/shop-details',{ title: 'Shop detail', layout: 'user-layout' });
-    }
+    // shopgrid(req,res) {
+    //     res.render('users/shop-grid',{ title: 'Shop grid', layout: 'user-layout' });
+    // }
+    // shopdetails(req,res) {
+    //     res.render('users/shop-details',{ title: 'Shop detail', layout: 'user-layout' });
+    // }
 }
 
 module.exports = new UserController;
