@@ -7,7 +7,14 @@ class LaundryService {
         return result[0];
     }
 
-    async filter(name) {
+    async search(name) {
+        //Using prepare statement to avoid SQL injection 
+        let query_str = "select * from service where servicename like ?";
+        const result = await db.connection.execute(query_str, [`%${name}%`]);
+        return result[0];
+    }
+    
+    async searchtype(name) {
         //Using prepare statement to avoid SQL injection 
         let query_str = "select * from service where servicename like ?";
         const result = await db.connection.execute(query_str, [`%${name}%`]);
