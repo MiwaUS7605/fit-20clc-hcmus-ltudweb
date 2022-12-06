@@ -7,7 +7,7 @@ class ServiceController {
         const nameFilter = req.query.search;
         let services = [];
         if (nameFilter) {
-            services = await laundryService.filter(nameFilter);
+            services = await laundryService.search(nameFilter);
         }
         else {
             services = await laundryService.getAll();
