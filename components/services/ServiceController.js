@@ -10,22 +10,6 @@ class ServiceController {
             from: minPrice,
             to: maxPrice } = req.query;
         
-        if(sortFilter){
-            switch(sortFilter){
-                case '1':
-                    sortFilter='sv.price asc';
-                    break;
-                case '2':
-                    sortFilter='sv.price desc';
-                    break;
-                case '3':
-                    sortFilter='sv.rating desc';
-                    break;
-                case '4':
-                    sortFilter='sv.idservice desc';
-                    break;
-            }
-        }
         let services = [];
 
         if (nameFilter || categoryFilter || minPrice || maxPrice||sortFilter) {
@@ -39,6 +23,7 @@ class ServiceController {
         //Render services results
         const countResult = Object.keys(services).length;
         res.render('users/shop-grid', { services, originalUrl: `${req.baseUrl}?${qs.stringify(withoutSort)}`, countResult});
+        //console.log(originalUrl);
     }
 
     async details(req, res, next) {

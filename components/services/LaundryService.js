@@ -38,20 +38,45 @@ class LaundryService {
         return result[0];
     }
     async filter(name, idtype, min, max,sorttype) {
-        console.log(sorttype);
         {
             name = name ? name : '';
             min = min ? min : 0;
             max = max ? max : 50000;
             idtype = idtype ? idtype : '%';
-            sorttype = sorttype ? sorttype : 'sv.idservice asc';
+            sorttype = sorttype ? sorttype : 1;
         }
-        let query_str = "select * from `service` as sv\
-                        where sv.servicename like ?\
-                        and sv.idtype like ?\
-                        and sv.price between ? and ?\
-                        order by ?";
-        const result = await db.connection.execute(query_str, [`%${name}%`,idtype,min,max,`%${sorttype}%`]);
+        let query_str;
+        switch(sorttype){
+                    case '1':
+                        query_str="select * from `service` as sv\
+                                where sv.servicename like ?\
+                                and sv.idtype like ?\
+                                and sv.price between ? and ?\
+                                order by sv.price asc";
+                        break;
+                    case '2':
+                        query_str="select * from `service` as sv\
+                                where sv.servicename like ?\
+                                and sv.idtype like ?\
+                                and sv.price between ? and ?\
+                                order by sv.price desc";
+                        break;
+                    case '3':
+                        query_str="select * from `service` as sv\
+                                    where sv.servicename like ?\
+                                    and sv.idtype like ?\
+                                    and sv.price between ? and ?\
+                                    order by sv.rating desc";
+                        break;
+                    case '4':
+                        query_str="select * from `service` as sv\
+                                    where sv.servicename like ?\
+                                    and sv.idtype like ?\
+                                    and sv.price between ? and ?\
+                                    order by sv.idservice desc";
+                        break;
+                } 
+        const result = await db.connection.execute(query_str, [`%${name}%`,idtype,min,max]);
         return result[0];
     }
 }
