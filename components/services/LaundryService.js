@@ -28,13 +28,13 @@ class LaundryService {
         return result[0][0];
     }
 
-    async sorttype(idtype,number) {
+    async sorttype(idtype) {
         //Using prepare statement to avoid SQL injection
         let query_str = 'select * from service '+
                         'where idtype like ? '+
                         'order by rating desc '+
-                        'limit ?';
-        const result = await db.connection.execute(query_str, [`%${idtype}%`,number]);
+                        'limit 8';
+        const result = await db.connection.execute(query_str, [`%${idtype}%`]);
         return result[0];
     }
     async filter(name, idtype, min, max,sorttype) {
