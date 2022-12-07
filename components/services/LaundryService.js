@@ -8,7 +8,7 @@ class LaundryService {
     }
     async getNumber(number) {
         let query_str = "select * from service limit ?";
-        const result = await db.connection.execute(query_str,[`${number}`]);
+        const result = await db.connection.execute(query_str, [`${number}`]);
         return result[0];
     }
 
@@ -28,16 +28,16 @@ class LaundryService {
         return result[0][0];
     }
 
-    async sorttype(idtype) {
+    async sorttype(idtype, number) {
         //Using prepare statement to avoid SQL injection
-        let query_str = 'select * from service '+
-                        'where idtype like ? '+
-                        'order by rating desc '+
-                        'limit 8';
-        const result = await db.connection.execute(query_str, [`%${idtype}%`]);
+        let query_str = 'select * from service ' +
+            'where idtype like ? ' +
+            'order by rating desc ' +
+            'limit ?';
+        const result = await db.connection.execute(query_str, [`%${idtype}%`, `${number}`]);
         return result[0];
     }
-    async filter(name, idtype, min, max,sorttype) {
+    async filter(name, idtype, min, max, sorttype) {
         {
             name = name ? name : '';
             min = min ? min : 0;
@@ -45,38 +45,41 @@ class LaundryService {
             idtype = idtype ? idtype : '%';
             sorttype = sorttype ? sorttype : 1;
         }
-        let query_str;
-        switch(sorttype){
-                    case '1':
-                        query_str="select * from `service` as sv\
+        let query_str = "select * from `service` as sv\
+                        where sv.servicename like ?\
+                        and sv.idtype like ?\
+                        and sv.price between ? and ?";
+        switch (sorttype) {
+            case '1':
+                query_str = "select * from `service` as sv\
                                 where sv.servicename like ?\
                                 and sv.idtype like ?\
                                 and sv.price between ? and ?\
                                 order by sv.price asc";
-                        break;
-                    case '2':
-                        query_str="select * from `service` as sv\
+                break;
+            case '2':
+                query_str = "select * from `service` as sv\
                                 where sv.servicename like ?\
                                 and sv.idtype like ?\
                                 and sv.price between ? and ?\
                                 order by sv.price desc";
-                        break;
-                    case '3':
-                        query_str="select * from `service` as sv\
+                break;
+            case '3':
+                query_str = "select * from `service` as sv\
                                     where sv.servicename like ?\
                                     and sv.idtype like ?\
                                     and sv.price between ? and ?\
                                     order by sv.rating desc";
-                        break;
-                    case '4':
-                        query_str="select * from `service` as sv\
+                break;
+            case '4':
+                query_str = "select * from `service` as sv\
                                     where sv.servicename like ?\
                                     and sv.idtype like ?\
                                     and sv.price between ? and ?\
                                     order by sv.idservice desc";
-                        break;
-                } 
-        const result = await db.connection.execute(query_str, [`%${name}%`,idtype,min,max]);
+                break;
+        }
+        const result = await db.connection.execute(query_str, [`%${name}%`, idtype, min, max]);
         return result[0];
     }
 }
