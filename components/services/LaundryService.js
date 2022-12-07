@@ -28,7 +28,6 @@ class LaundryService {
         return result[0][0];
     }
 
-<<<<<<< HEAD
     async sorttype(idtype) {
         //Using prepare statement to avoid SQL injection
         let query_str = 'select * from service '+
@@ -38,7 +37,6 @@ class LaundryService {
         const result = await db.connection.execute(query_str, [`%${idtype}%`]);
         return result[0];
     }
-=======
     async filter(name, idtype, min, max) {
         {
             name = name ? name : '';
@@ -59,7 +57,6 @@ class LaundryService {
     }
 
     
->>>>>>> 346458a51a555d1a57ae341aa2b2a679cf4aae50
 }
 
 module.exports = new LaundryService;
