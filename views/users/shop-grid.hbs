@@ -25,12 +25,11 @@
                         <div class="sidebar__item">
                             <h4>Department</h4>
                             <ul>
-                                <li><a href="#">Dry Cleaning</a></li>
-                                <li><a href="#">Laundry Cleaning</a></li>
-                                <li><a href="#">Shoes Cleaning</a></li>
-                                <li><a href="#">Furniture Cleaning</a></li>
-                                <li><a href="#">Stuffed dolls cleaning</a></li>
-
+                                <li><a href="{{originalUrl}}">Dry Cleaning</a></li>
+                                <li><a href="{{originalUrl}}">Laundry Cleaning</a></li>
+                                <li><a href="{{originalUrl}}">Shoes Cleaning</a></li>
+                                <li><a href="{{originalUrl}}">Furniture Cleaning</a></li>
+                                <li><a href="{{originalUrl}}">Stuffed dolls cleaning</a></li>
                             </ul>
                         </div>
                         <div class="sidebar__item">
@@ -43,9 +42,9 @@
                                     <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                                 </div>
                                 <div class="range-slider">
-                                    <div class="price-input">
-                                        <input type="text" id="minamount">
-                                        <input type="text" id="maxamount">
+                                    <div class="price-input d-flex justify-content-between">
+                                        <input name="from" type="text" id="minamount" disabled>
+                                        <input name="to" type="text" id="maxamount" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -86,33 +85,6 @@
                                 <label for="green">
                                     Package
                                     <input type="radio" id="green">
-                                </label>
-                            </div>
-                        </div>
-                        <div class="sidebar__item">
-                            <h4>Popular Size</h4>
-                            <div class="sidebar__item__size">
-                                <label for="large">
-                                    Large
-                                    <input type="radio" id="large">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__size">
-                                <label for="medium">
-                                    Medium
-                                    <input type="radio" id="medium">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__size">
-                                <label for="small">
-                                    Small
-                                    <input type="radio" id="small">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__size">
-                                <label for="tiny">
-                                    Tiny
-                                    <input type="radio" id="tiny">
                                 </label>
                             </div>
                         </div>
@@ -316,7 +288,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <div class="filter__found">
-                                    <h6><span>16</span> Products found</h6>
+                                    <h6><span>{{countResult}}</span> service(s) found</h6>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-3">
