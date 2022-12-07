@@ -37,26 +37,23 @@ class LaundryService {
         const result = await db.connection.execute(query_str, [`%${idtype}%`]);
         return result[0];
     }
-    async filter(name, idtype, min, max) {
+    async filter(name, idtype, min, max,sorttype) {
+        console.log(sorttype);
         {
             name = name ? name : '';
             min = min ? min : 0;
             max = max ? max : 50000;
             idtype = idtype ? idtype : '%';
+            sorttype = sorttype ? sorttype : 'sv.idservice asc';
         }
         let query_str = "select * from `service` as sv\
                         where sv.servicename like ?\
                         and sv.idtype like ?\
-                        and sv.price between ? and ?";
-        const result = await db.connection.execute(query_str, [`%${name}%`,idtype,min,max]);
+                        and sv.price between ? and ?\
+                        order by ?";
+        const result = await db.connection.execute(query_str, [`%${name}%`,idtype,min,max,`%${sorttype}%`]);
         return result[0];
     }
-
-    async sort() {
-        
-    }
-
-    
 }
 
 module.exports = new LaundryService;
