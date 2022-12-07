@@ -5,7 +5,7 @@ const serviceController = require('../components/services/ServiceController');
 
 /* GET home page. */
 
-router.get('/home', userController.home);
+//router.get('/home', userController.home);
 
 /* GET check out page. */
 router.get('/checkout',userController.checkout);
@@ -22,5 +22,5 @@ router.get('/shop-grid', serviceController.list);
 /* GET shoping cart page. */
 router.get('/shoping-cart', userController.shopingcart);
 
-
+router.get('/home', serviceController.featuredproducts);
 module.exports = router;

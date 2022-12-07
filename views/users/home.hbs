@@ -1,20 +1,3 @@
-{{!-- <section class="hero">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-9">
-                    <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
-                        <div class="hero__text">
-                            <span>FRUIT FRESH</span>
-                            <h2>Vegetable <br />100% Organic</h2>
-                            <p>Free Pickup and Delivery Available</p>
-                            <a href="#" class="primary-btn">SHOP NOW</a>
-                        </div>
-                    </div>
-            </div>
-        </div>
-    </div>
-</section>                    --}}
-                    
 <!-- Categories Section Begin -->
     <section class="categories">
         <div class="container">
@@ -59,34 +42,37 @@
                     <div class="section-title">
                         <h2>Featured Product</h2>
                     </div>
-                    <div class="featured__controls">
-                        <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".oranges">Oranges</li>
-                            <li data-filter=".fresh-meat">Fresh Meat</li>
-                            <li data-filter=".vegetables">Vegetables</li>
-                            <li data-filter=".fastfood">Fastfood</li>
-                        </ul>
-                    </div>
+                        <div class="featured__controls">
+                            <ul>
+                                <li><a href="{{originalUrl}}">All</li>
+                                <li> <a href="{{originalUrl}}?featureproducts=1"></a>Dry Cleaning</li>
+                                <li><a href="{{originalUrl}}?featureproducts=2"></a>Laundry Cleaning</li>
+                                <li><a href="{{originalUrl}}?featureproducts=3"></a>Shoes Cleaning</li>
+                                <li><a href="{{originalUrl}}?featureproducts=4"></a>Furniture Cleaning</li>
+                                <li><a href="{{originalUrl}}?featureproducts=5"></a>Stuffed dolls cleaning</li>
+                            </ul>
+                        </div>
                 </div>
             </div>
             <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="/users/img/featured/feature-1.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                {{#each services}}
+                    <div class="col-lg-3 col-md-4 col-sm-6" >
+                        <div class="featured__item">
+                            <div class="featured__item__pic set-bg" data-setbg={{image}}>
+                                <ul class="featured__item__pic__hover">
+                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="featured__item__text">
+                                <h6><a href="services/{{idservice}}">{{servicename}}</a></h6>
+                                <h5>{{price}} VNĐ</h5>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
+                {{/each}}
+                {{!-- <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="/users/img/featured/feature-2.jpg">
                             <ul class="featured__item__pic__hover">
@@ -190,7 +176,7 @@
                             <h5>$30.00</h5>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>

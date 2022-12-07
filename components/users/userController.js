@@ -2,9 +2,9 @@ const db = require('../../db');
 const serviceController = require('../services/ServiceController');
 
 class UserController {
-    home(req,res){
-        res.render('users/home',{ title: 'Home' , layout: 'user-layout'});
-    }
+    // home(req,res){
+    //     res.render('users/home',{ title: 'Home' , layout: 'user-layout'});
+    // }
     checkout(req,res) {
         res.render('users/checkout',{ title: 'Check out', layout: 'user-layout' });
     }
