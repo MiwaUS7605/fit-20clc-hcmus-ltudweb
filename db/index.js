@@ -5,9 +5,9 @@ const db = {connection: null};
 
 async function db_connect() {
   db.connection = await mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
+    host: 'db4free.net',
+    user: 'sunflowerltudweb',
+    password: 'tamsotam',
     database: 'db_laundry'
   })
 
