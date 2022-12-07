@@ -28,7 +28,6 @@ class LaundryService {
         return result[0][0];
     }
 
-<<<<<<< HEAD
     async sorttype(idtype) {
         //Using prepare statement to avoid SQL injection
         let query_str = 'select * from service '+
@@ -38,8 +37,8 @@ class LaundryService {
         const result = await db.connection.execute(query_str, [`%${idtype}%`]);
         return result[0];
     }
-=======
-    async filter(name, idtype, min, max) {
+    async filter(name, idtype, min, max,sorttype) {
+        console.log(sorttype);
         {
             name = name ? name : '';
             min = min ? min : 0;
@@ -49,17 +48,21 @@ class LaundryService {
         let query_str = "select * from `service` as sv\
                         where sv.servicename like ?\
                         and sv.idtype like ?\
-                        and sv.price between ? and ?";
-        const result = await db.connection.execute(query_str, [`%${name}%`,idtype,min,max]);
+                        and sv.price between ? and ?\
+                        order by ?";
+        const result = await db.connection.execute(query_str, [`%${name}%`,idtype,min,max,`%${sorttype}%`]);
         return result[0];
     }
 
-    async sort() {
-        
-    }
+    // async sortList(services,sortFilter) {
+    //     let query_str = 'select * from ?\
+    //                     order by ?';
+                        
+    //     const result = await db.connection.execute(query_str, [`%${services}%`,`%${sortFilter}%`]);
+    //     return result[0];
+    // }
 
     
->>>>>>> 346458a51a555d1a57ae341aa2b2a679cf4aae50
 }
 
 module.exports = new LaundryService;

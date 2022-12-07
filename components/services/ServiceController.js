@@ -4,15 +4,37 @@ const qs = require('qs');
 
 class ServiceController {
     async list(req, res, next) {
-        const { search: nameFilter,
+        let { search: nameFilter,
             category: categoryFilter,
             sort: sortFilter,
             from: minPrice,
             to: maxPrice } = req.query;
+        
+        if(sortFilter){
+            switch(sortFilter){
+                case '1':
+                    sortFilter='sv.price asc';
+                    break;
+                case '2':
+                    sortFilter='sv.price desc';
+                    break;
+                case '3':
+                    sortFilter='sv.rating desc';
+                    break;
+                case '4':
+                    sortFilter='sv.idservice desc';
+                    break;
+                default:
+                    sortFilter='sv.idservice asc';
+
+            }
+        }
         let services = [];
 
+        console.log(sortFilter);
+
         if (nameFilter || categoryFilter || minPrice || minPrice) {
-            services = await laundryService.filter(nameFilter,categoryFilter,minPrice,maxPrice);
+            services = await laundryService.filter(nameFilter,categoryFilter,minPrice,maxPrice,sortFilter);
         }
         else {
             services = await laundryService.getAll();
