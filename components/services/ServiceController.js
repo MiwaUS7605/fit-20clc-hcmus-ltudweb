@@ -24,16 +24,11 @@ class ServiceController {
                 case '4':
                     sortFilter='sv.idservice desc';
                     break;
-                default:
-                    sortFilter='sv.idservice asc';
-
             }
         }
         let services = [];
 
-        console.log(sortFilter);
-
-        if (nameFilter || categoryFilter || minPrice || minPrice) {
+        if (nameFilter || categoryFilter || minPrice || maxPrice||sortFilter) {
             services = await laundryService.filter(nameFilter,categoryFilter,minPrice,maxPrice,sortFilter);
         }
         else {

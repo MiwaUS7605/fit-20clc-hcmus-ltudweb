@@ -38,12 +38,12 @@ class LaundryService {
         return result[0];
     }
     async filter(name, idtype, min, max,sorttype) {
-        console.log(sorttype);
         {
             name = name ? name : '';
             min = min ? min : 0;
             max = max ? max : 50000;
             idtype = idtype ? idtype : '%';
+            sorttype = sorttype ? sorttype : 'sv.idservice asc';
         }
         let query_str = "select * from `service` as sv\
                         where sv.servicename like ?\
