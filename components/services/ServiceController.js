@@ -45,14 +45,28 @@ class ServiceController {
         const serviceId = req.params['serviceId'];
         const service = await laundryService.get(serviceId);
         if (!service) return next(createError(404));
-        res.render('users/shop-details', { service });
+
+        const type = service.idtype;
+        if (!type) return next(createError(404));
+
+        let products = [];
+        if (type) {
+            products = await laundryService.sorttype(type,4);
+        }
+        else {
+            products = await laundryService.getNumber(4);
+        }
+        if (!products) return next(createError(404));
+        
+        res.render('users/shop-details', { service,products });
+
     }
 
     async featuredproducts(req, res, next) {
         const serviceType = req.query.featureproducts;
         let services = [];
         if (serviceType) {
-            services = await laundryService.sorttype(serviceType);
+            services = await laundryService.sorttype(serviceType,8);
         }
         else {
             services = await laundryService.getNumber(8);
