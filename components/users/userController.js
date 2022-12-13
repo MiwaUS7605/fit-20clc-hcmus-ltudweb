@@ -23,24 +23,3 @@ class UserController {
 }
 
 module.exports = new UserController;
-
-
-// exports.checkout=(req,res)=>{
-//     res.render('users/checkout',{ title: 'Check out' });
-// }
-
-// exports.contact=(req,res)=>{
-//     res.render('users/contact',{ title: 'Contact' });
-// }
-
-// exports.shopdetails=(req,res)=>{
-//     res.render('users/shop-details',{ title: 'Shop detail' });
-// }
-
-// exports.shopgrid=(req,res)=>{
-//     res.render('users/shop-grid',{ title: 'Shop grid' });
-// }
-
-// exports.shopingcart=(req,res)=>{
-//     res.render('users/shoping-cart',{ title: 'Shoping cart' });
-// }
