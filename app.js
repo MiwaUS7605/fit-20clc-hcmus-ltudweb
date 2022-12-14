@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const session = require('express-session');
 const mysql = require('mysql2');
 
 
@@ -22,6 +23,13 @@ const viewPath = path.join(__dirname, 'views');
 app.set('views', viewPath);
 app.set('view engine', 'hbs');
 
+app.use(session({
+  secret: 'very secret keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+}));
+app.use(passport.authenticate('session'));
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -29,6 +37,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 // app.use('/students', studentRouter);
