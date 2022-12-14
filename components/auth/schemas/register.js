@@ -8,6 +8,6 @@ module.exports = {
     phonenumber:{type: 'string', 'minLength':10},
     address: { type: 'string', 'maxLength':256}
   },
-  required: ['name', 'email', 'password',],
+  required: ['name', 'email', 'password','confirmpassword','phonenumber'],
   additionalProperties: false,
 };
