@@ -30,6 +30,7 @@ CREATE TABLE `customer` (
   `phonenumber` varchar(12) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `address` varchar(256) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `email` varchar(256) COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8mb4_vietnamese_ci NOT NULL DEFAULT '1234567890',
   PRIMARY KEY (`idcustomer`),
   UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
@@ -41,7 +42,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'Lê Hoàng Khanh Nguyên ','123478909','ABC','ikdskajjfjjj@gmail.com'),(2,'Lăng Thảo Thảo','823973242','ABC','ksjkjalfwij@gmail.com'),(3,'Nguyễn Minh Quang','712731994','ABC','jhsdausjd@gmail.com'),(4,'Lê Hoài Phương','828399493','ABC','jkdi8yedj@gmail.com'),(5,'Bành Hảo Toàn','839828239','ABC','9ieifesieh@gmail.com');
+INSERT INTO `customer` VALUES (1,'Lê Hoàng Khanh Nguyên ','123478909','ABC','ikdskajjfjjj@gmail.com','1234567890'),(2,'Lăng Thảo Thảo','823973242','ABC','ksjkjalfwij@gmail.com','1234567890'),(3,'Nguyễn Minh Quang','712731994','ABC','jhsdausjd@gmail.com','1234567890'),(4,'Lê Hoài Phương','828399493','ABC','jkdi8yedj@gmail.com','1234567890'),(5,'Bành Hảo Toàn','839828239','ABC','9ieifesieh@gmail.com','1234567890');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -157,6 +158,14 @@ LOCK TABLES `type` WRITE;
 INSERT INTO `type` VALUES (1,'Dry cleaning'),(2,'Laundry cleaning'),(3,'Shoes cleaning'),(4,'Furniture cleaning'),(5,'Stuffed dolls cleaning');
 /*!40000 ALTER TABLE `type` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'db_laundry'
+--
+
+--
+-- Dumping routines for database 'db_laundry'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -167,4 +176,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-05 14:34:12
+-- Dump completed on 2022-12-14 11:48:27
