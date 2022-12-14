@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const mysql = require('mysql2');
-const passport = require('./components/auth/passport');
+const passport = require('./components/auth/passport/index');
 
 
 const app = express();
