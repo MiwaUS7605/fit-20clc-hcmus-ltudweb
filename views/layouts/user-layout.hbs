@@ -110,12 +110,20 @@
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
                                 <a href="#"><i class="fa fa-pinterest-p"></i></a>
                             </div>
-                            
-                            <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Register</a>
-                            </div>
-                            <div class="header__top__right__auth">
-                                <a href=""><i class="fa fa-user"></i> Login</a>
+                            <div>
+                                {{#if user}}
+                                    <div class="header__top__right__auth"> Hello <a href="" >{{user.name}}</a></div>
+                                    <div class="header__top__right__auth"> 
+                                        <a href=""> Logout</a>
+                                    </div>
+                                {{else}}
+                                    <div class="header__top__right__auth">
+                                        <a href="/users/auth/register"><i class="fa fa-user"></i> Register</a>
+                                    </div>
+                                    <div class="header__top__right__auth">
+                                        <a href="/users/auth/login"><i class="fa fa-user"></i> Login</a>
+                                    </div>
+                                {{/if}}
                             </div>
                         </div>
                     </div>
@@ -179,7 +187,7 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="/users/shop-grid"> 
+                            <form action="/users/shop-grid">
                                 <input name="search" type="text" placeholder="What do you need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
@@ -194,10 +202,10 @@
                             </div>
                         </div>
                     </div>
-                    
-                    </div>
+
                 </div>
             </div>
+        </div>
         </div>
     </section>
     <!-- Hero Section End -->
@@ -259,9 +267,15 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer__copyright">
-                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                        <div class="footer__copyright__text">
+                            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                                template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                    href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
                         <div class="footer__copyright__payment"><img src="/users/img/payment-item.png" alt=""></div>
                     </div>
                 </div>
