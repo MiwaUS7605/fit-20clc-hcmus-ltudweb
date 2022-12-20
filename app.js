@@ -7,18 +7,40 @@ const session = require('express-session');
 const mysql = require('mysql2');
 const passport = require('./components/auth/passport/index');
 
-
 const app = express();
 const route = require('./routes');
 
 // view engine setup
-const hbs = require('express-handlebars');
-app.engine('hbs', hbs.engine({
+const expressHbs = require('express-handlebars');
+app.engine('hbs', expressHbs.engine({
   extname: 'hbs',
   defaultLayout: 'user-layout',
   layoutsDir: __dirname + '/views/layouts/',
   partialsDir: __dirname + '/views/partials/'
 }));
+
+var hbs = expressHbs.create({});
+
+hbs.handlebars.registerHelper('forloop', function (from, to, incr, url, block) {
+  var accum = '';
+  block.data.realUrl = url;
+  
+  for (var i = from; i <= to; i += incr) {
+    block.data.index = i;
+    accum += block.fn(i);
+  }
+  return accum;
+})
+
+hbs.handlebars.registerHelper('each_fromto', function(ary, from, to, options) {
+  if(!ary || ary.length == 0)
+      return options.inverse(this);
+
+  var result = [ ];
+  for(var i = from; i <= to; ++i)
+      result.push(options.fn(ary[i]));
+  return result.join('');
+});
 
 const viewPath = path.join(__dirname, 'views');
 app.set('views', viewPath);

@@ -1,15 +1,17 @@
 const laundryService = require('./LaundryService');
 const createError = require('http-errors');
 const qs = require('qs');
+const Paginator = require('paginator');
 
-class ServiceController {
+class ServiceController {    
     async list(req, res, next) {
-        let { search: nameFilter,
+        const { search: nameFilter,
             category: categoryFilter,
             sort: sortFilter,
             from: minPrice,
-            to: maxPrice } = req.query;
-        
+            to: maxPrice, 
+            page: currentPage} = req.query;
+
         let services = [];
 
         if (nameFilter || categoryFilter || minPrice || maxPrice||sortFilter) {
@@ -18,12 +20,20 @@ class ServiceController {
         else {
             services = await laundryService.getAll();
         }
-        const { sort, ...withoutSort } = req.query;
-
+        const { page, ...withoutSort } = req.query;
         //Render services results
         const countResult = Object.keys(services).length;
-        res.render('users/shop-grid', { services, originalUrl: `${req.baseUrl}?${qs.stringify(withoutSort)}`, countResult});
-        //console.log(originalUrl);
+        //Paginate results
+        const items_per_page = 6;
+        const range_paginate = 4;
+        var paginator = new Paginator(items_per_page,range_paginate);
+        var pagination_info = paginator.build(countResult, currentPage); 
+        
+        res.render('users/shop-grid', { services, 
+                                        originalUrl: `${req.baseUrl}/shop-grid?${qs.stringify(withoutSort)}`, 
+                                        countResult, 
+                                        pagination_info, 
+                                        items_per_page});
     }
 
     async details(req, res, next) {
