@@ -1,4 +1,6 @@
-const createError = require('http-errors');
+ 
+ 
+                                                                                                                                                                                                      const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -21,9 +23,9 @@ app.engine('hbs', expressHbs.engine({
 
 var hbs = expressHbs.create({});
 
-hbs.handlebars.registerHelper('forloop', function (from, to, incr, url, block) {
+hbs.handlebars.registerHelper('for', function (from, to, incr, url, block) {
   var accum = '';
-  block.data.realUrl = url;
+  block.data.realUrl    = url;
   
   for (var i = from; i <= to; i += incr) {
     block.data.index = i;
@@ -32,13 +34,13 @@ hbs.handlebars.registerHelper('forloop', function (from, to, incr, url, block) {
   return accum;
 })
 
-hbs.handlebars.registerHelper('each_fromto', function(ary, from, to, options) {
-  if(!ary || ary.length == 0)
+hbs.handlebars.registerHelper('each_fromto', function(arr, from, to, options) {
+  if(!arr || arr.length == 0)
       return options.inverse(this);
 
   var result = [ ];
   for(var i = from; i <= to; ++i)
-      result.push(options.fn(ary[i]));
+      result.push(options.fn(arr[i]));
   return result.join('');
 });
 

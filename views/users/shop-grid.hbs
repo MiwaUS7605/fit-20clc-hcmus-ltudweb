@@ -255,9 +255,9 @@
                                 <a href="{{originalUrl}}&page={{pagination_info.previous_page}}"><i class="fa fa-long-arrow-left"></i></a>
                                 {{/if}}
 
-                                {{#forloop pagination_info.first_page pagination_info.last_page 1 originalUrl}}
+                                {{#for pagination_info.first_page pagination_info.last_page 1 originalUrl}}
                                     <a href="{{@realUrl}}&page={{@index}}">{{@index}}</a>
-                                {{/forloop}}
+                                {{/for}}
     
                                 {{#if pagination_info.has_next_page}}
                                 <a href="{{originalUrl}}&page={{pagination_info.next_page}}"><i class="fa fa-long-arrow-right"></i></a>
