@@ -26,5 +26,8 @@ class AdminController {
     signup(req,res) {
         res.render('admin/signup', {layout: 'admin-layout'});
     }
+    customerList(req,res) {
+        res.render('admin/customer-list', {layout: 'admin-layout'});
+    }
 }
 module.exports = new AdminController;
