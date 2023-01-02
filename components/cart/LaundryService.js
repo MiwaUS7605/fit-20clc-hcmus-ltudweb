@@ -16,6 +16,18 @@ class LaundryService {
         const result = await db.connection.execute(query_str, [id]);
         return result[0][0];
     }
+
+    async addtocart(idcustomer, idservice) {
+        await db.connection.execute('insert into `cart` (idcart, idcustomer, idservice)\
+                                        values (1,?,?)', [idcustomer, idservice]);
+    }
+
+    async getcart(userId) {
+        //Using prepare statement to avoid SQL injection
+        let query_str = "select * from `cart` where idcustomer = ?";
+        const result = await db.connection.execute(query_str, [userId]);
+        return result[0][0];
+    }
 }
 
 module.exports = new LaundryService;

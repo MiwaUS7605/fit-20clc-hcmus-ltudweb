@@ -289,6 +289,8 @@
     <script src="/users/js/main.js"></script>
     <script>
         function addSer(idservice) {
+        //let userId = res.locals.user.id;
+        //    if (!userId) return;
         alert(idservice)
             $.ajax({
                 url: '/users/add-to-cart',
@@ -296,10 +298,10 @@
                 data: { idservice },
                 dataType: 'json',
                 success: function (data) {
-                    alert("Add thanh cong")
+                    alert("Add to cart successfully!!")
                 },
                 error: function (data) {
-                    alert(data.idservice)
+                    alert("Can not add to cart...")
                 }
             })
         }

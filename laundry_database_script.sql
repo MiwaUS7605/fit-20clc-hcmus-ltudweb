@@ -29,7 +29,11 @@ CREATE TABLE `cart` (
   `idcustomer` int(11) DEFAULT NULL,
   `idservice` int(11) DEFAULT NULL,
   `number` int(11) DEFAULT '1',
-  PRIMARY KEY (`idcart`)
+  PRIMARY KEY (`idcart`),
+  KEY `FK_CA_CU_idx` (`idcustomer`),
+  KEY `FK_CA_SE_idx` (`idservice`),
+  CONSTRAINT `FK_CA_CU` FOREIGN KEY (`idcustomer`) REFERENCES `customer` (`idcustomer`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_CA_SE` FOREIGN KEY (`idservice`) REFERENCES `service` (`idservice`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -56,6 +60,8 @@ CREATE TABLE `customer` (
   `address` varchar(256) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `email` varchar(256) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `password` varchar(100) COLLATE utf8mb4_vietnamese_ci NOT NULL DEFAULT '1234567890',
+  `status` int(11) DEFAULT '1',
+  `isAdmin` int(11) DEFAULT '0',
   PRIMARY KEY (`idcustomer`),
   UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
@@ -67,7 +73,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'Lê Hoàng Khanh Nguyên ','123478909','ABC','ikdskajjfjjj@gmail.com','1234567890'),(2,'Lăng Thảo Thảo','823973242','ABC','ksjkjalfwij@gmail.com','1234567890'),(3,'Nguyễn Minh Quang','712731994','ABC','jhsdausjd@gmail.com','1234567890'),(4,'Lê Hoài Phương','828399493','ABC','jkdi8yedj@gmail.com','1234567890'),(5,'Bành Hảo Toàn','839828239','ABC','9ieifesieh@gmail.com','1234567890');
+INSERT INTO `customer` VALUES (1,'Lê Hoàng Khanh Nguyên ','123478909','ABC','ikdskajjfjjj@gmail.com','1234567890',1,0),(2,'Lăng Thảo Thảo','823973242','ABC','ksjkjalfwij@gmail.com','1234567890',1,0),(3,'Nguyễn Minh Quang','712731994','ABC','jhsdausjd@gmail.com','1234567890',1,0),(4,'Lê Hoài Phương','828399493','ABC','jkdi8yedj@gmail.com','1234567890',1,0),(5,'Bành Hảo Toàn','839828239','ABC','9ieifesieh@gmail.com','1234567890',1,0);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +149,8 @@ CREATE TABLE `service` (
   `idtype` int(11) NOT NULL,
   `rating` double DEFAULT '0',
   `image` varchar(256) COLLATE utf8mb4_vietnamese_ci DEFAULT NULL,
-  `availability` bit(1) DEFAULT b'1',
+  `availability` int(11) DEFAULT '1',
+  `totalpurchase` int(11) DEFAULT '0',
   PRIMARY KEY (`idservice`),
   KEY `FK_SERVICE_TYPE_idx` (`idtype`),
   CONSTRAINT `FK_SERVICE_TYPE` FOREIGN KEY (`idtype`) REFERENCES `type` (`idtype`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -156,7 +163,7 @@ CREATE TABLE `service` (
 
 LOCK TABLES `service` WRITE;
 /*!40000 ALTER TABLE `service` DISABLE KEYS */;
-INSERT INTO `service` VALUES (1,'Inspection and Sorting','\"No information\"',10000,1,0,'/image/cleanings/dry/dry_sort.jpg',_binary ''),(2,'Stain removal','\"No information\"',20000,1,0,'/image/cleanings/dry/dry_remove.jpg',_binary ''),(3,'Dry cleaning','\"No information\"',50000,1,0,'/image/cleanings/dry/dry_clean.jpg',_binary ''),(4,'Normal temperature Drying','\"No information\"',10000,1,0,'/image/cleanings/dry/dry_dry.jpg',_binary ''),(5,'Pressing and Finishing','\"No information\"',10000,1,0,'/image/cleanings/dry/dry_press.jpg',_binary ''),(6,'Packaging','\"No information\"',10000,1,0,'/image/cleanings/dry/dry_package.jpg',_binary ''),(7,'Inspection and Sorting','\"No information\"',10000,2,0,'/image/cleanings/laundry/laundry_sort.jpg',_binary ''),(8,'Stain removal','\"No information\"',20000,2,0,'/image/cleanings/laundry/laundry_remove.jpg',_binary ''),(9,'Washing','\"No information\"',30000,2,0,'/image/cleanings/laundry/laundry_wash.jpg',_binary ''),(10,'Hot air Drying','\"No information\"',20000,2,0,'/image/cleanings/laundry/laundry_dry.jpg',_binary ''),(11,'Ironing and Finishing','\"No information\"',10000,2,0,'/image/cleanings/laundry/laundry_iron.jpg',_binary ''),(12,'Packaging','\"No information\"',10000,2,0,'/image/cleanings/laundry/laundry_package.jpg',_binary ''),(13,'Inspection and Sorting','\"No information\"',10000,3,0,'/image/cleanings/shoes/shoes_inspect.jpg',_binary ''),(14,'Stain removal','\"No information\"',20000,3,0,'/image/cleanings/shoes/shoes_remove.jpg',_binary ''),(15,'Soft cleaning','\"No information\"',50000,3,0,'/image/cleanings/shoes/shoes_clean.webp',_binary ''),(16,'Normal temperature Drying','\"No information\"',10000,3,0,'/image/cleanings/shoes/shoes_dry.jpg',_binary ''),(17,'Pressing and Finishing','\"No information\"',10000,3,0,'/image/cleanings/shoes/shoes_press.jpg',_binary ''),(18,'Packaging','\"No information\"',10000,3,0,'/image/cleanings/shoes/shoes_package.jpg',_binary ''),(19,'Inspection and Sorting','\"No information\"',10000,5,0,'/image/cleanings/stuffed/stuffed_sort.jpg',_binary ''),(20,'Stain removal','\"No information\"',20000,5,0,'/image/cleanings/stuffed/stuffed_remove.jpg',_binary ''),(21,'Soft cleaning','\"No information\"',50000,5,0,'/image/cleanings/stuffed/stuffed_wash.jpg',_binary ''),(22,'Normal temperature Drying','\"No information\"',10000,5,0,'/image/cleanings/stuffed/stuffed_dry.jpg',_binary ''),(23,'Pressing and Finishing','\"No information\"',10000,5,0,'/image/cleanings/stuffed/stuffed_press.jpg',_binary ''),(24,'Packaging','\"No information\"',10000,5,0,'/image/cleanings/stuffed/stuffed_package.jpg',_binary ''),(25,'Inspection and Preparing tools','\"No information\"',50000,4,0,'/image/cleanings/furniture/furniture_tools.jpg',_binary ''),(26,'Stain removal','\"No information\"',20000,4,0,'/image/cleanings/furniture/furniture_remove.jpg',_binary ''),(27,'Surface cleaning','\"No information\"',50000,4,0,'/image/cleanings/furniture/furniture_clean.jpg',_binary ''),(28,'New coating','\"No information\"',30000,4,0,'/image/cleanings/furniture/furniture_coat.jpg',_binary ''),(29,'Sanitization','\"No information\"',20000,4,0,'/image/cleanings/furniture/furniture_sanitize.jpg',_binary ''),(30,'Hot air Drying','\"No information\"',20000,4,0,'/image/cleanings/furniture/furniture_dry.jpg',_binary '');
+INSERT INTO `service` VALUES (1,'Inspection and Sorting','\"No information\"',10000,1,0,'/image/cleanings/dry/dry_sort.jpg',1,0),(2,'Stain removal','\"No information\"',20000,1,0,'/image/cleanings/dry/dry_remove.jpg',1,0),(3,'Dry cleaning','\"No information\"',50000,1,0,'/image/cleanings/dry/dry_clean.jpg',1,0),(4,'Normal temperature Drying','\"No information\"',10000,1,0,'/image/cleanings/dry/dry_dry.jpg',1,0),(5,'Pressing and Finishing','\"No information\"',10000,1,0,'/image/cleanings/dry/dry_press.jpg',1,0),(6,'Packaging','\"No information\"',10000,1,0,'/image/cleanings/dry/dry_package.jpg',1,0),(7,'Inspection and Sorting','\"No information\"',10000,2,0,'/image/cleanings/laundry/laundry_sort.jpg',1,0),(8,'Stain removal','\"No information\"',20000,2,0,'/image/cleanings/laundry/laundry_remove.jpg',1,0),(9,'Washing','\"No information\"',30000,2,0,'/image/cleanings/laundry/laundry_wash.jpg',1,0),(10,'Hot air Drying','\"No information\"',20000,2,0,'/image/cleanings/laundry/laundry_dry.jpg',1,0),(11,'Ironing and Finishing','\"No information\"',10000,2,0,'/image/cleanings/laundry/laundry_iron.jpg',1,0),(12,'Packaging','\"No information\"',10000,2,0,'/image/cleanings/laundry/laundry_package.jpg',1,0),(13,'Inspection and Sorting','\"No information\"',10000,3,0,'/image/cleanings/shoes/shoes_inspect.jpg',1,0),(14,'Stain removal','\"No information\"',20000,3,0,'/image/cleanings/shoes/shoes_remove.jpg',1,0),(15,'Soft cleaning','\"No information\"',50000,3,0,'/image/cleanings/shoes/shoes_clean.webp',1,0),(16,'Normal temperature Drying','\"No information\"',10000,3,0,'/image/cleanings/shoes/shoes_dry.jpg',1,0),(17,'Pressing and Finishing','\"No information\"',10000,3,0,'/image/cleanings/shoes/shoes_press.jpg',1,0),(18,'Packaging','\"No information\"',10000,3,0,'/image/cleanings/shoes/shoes_package.jpg',1,0),(19,'Inspection and Sorting','\"No information\"',10000,5,0,'/image/cleanings/stuffed/stuffed_sort.jpg',1,0),(20,'Stain removal','\"No information\"',20000,5,0,'/image/cleanings/stuffed/stuffed_remove.jpg',1,0),(21,'Soft cleaning','\"No information\"',50000,5,0,'/image/cleanings/stuffed/stuffed_wash.jpg',1,0),(22,'Normal temperature Drying','\"No information\"',10000,5,0,'/image/cleanings/stuffed/stuffed_dry.jpg',1,0),(23,'Pressing and Finishing','\"No information\"',10000,5,0,'/image/cleanings/stuffed/stuffed_press.jpg',1,0),(24,'Packaging','\"No information\"',10000,5,0,'/image/cleanings/stuffed/stuffed_package.jpg',1,0),(25,'Inspection and Preparing tools','\"No information\"',50000,4,0,'/image/cleanings/furniture/furniture_tools.jpg',1,0),(26,'Stain removal','\"No information\"',20000,4,0,'/image/cleanings/furniture/furniture_remove.jpg',1,0),(27,'Surface cleaning','\"No information\"',50000,4,0,'/image/cleanings/furniture/furniture_clean.jpg',1,0),(28,'New coating','\"No information\"',30000,4,0,'/image/cleanings/furniture/furniture_coat.jpg',1,0),(29,'Sanitization','\"No information\"',20000,4,0,'/image/cleanings/furniture/furniture_sanitize.jpg',1,0),(30,'Hot air Drying','\"No information\"',20000,4,0,'/image/cleanings/furniture/furniture_dry.jpg',1,0);
 /*!40000 ALTER TABLE `service` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,4 +208,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-01 19:08:29
+-- Dump completed on 2023-01-02 15:24:24
