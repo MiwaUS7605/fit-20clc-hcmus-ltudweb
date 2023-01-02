@@ -3,9 +3,9 @@ const bcrypt = require('bcryptjs');
 const authRepository = require('./AuthRepository');
 
 class AuthService {
+  
   async getUserIdByEmail(email) {
-    const result = await db.connection.execute('select idcustomer from customer where email = ? limit 1', [email]);
-    return result[0] && result[0][0];
+    return authRepository.getUserIdByEmail(email);
   }
   
   async register(name, phonenumber, address, email, password) {

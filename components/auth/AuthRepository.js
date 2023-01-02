@@ -23,6 +23,10 @@ class AuthRepository {
                                     where `email` = ?', [nname,nphonenumber,naddress,npassword, user.email]);
     }
 
+    async getUserIdByEmail(email) {
+        const result = await db.connection.execute('select idcustomer from customer where email = ? limit 1', [email]);
+        return result[0] && result[0][0];
+    }
 }
 
 module.exports = new AuthRepository;

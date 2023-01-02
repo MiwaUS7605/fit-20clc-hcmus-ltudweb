@@ -1,5 +1,6 @@
 const db = require('../../db');
 const serviceController = require('../services/ServiceController');
+const cartController = require('../cart/CartController');
 
 class UserController {
     // home(req,res){
@@ -11,9 +12,10 @@ class UserController {
     contact(req,res) {
         res.render('users/contact',{ title: 'Contact', layout: 'user-layout' });
     }
-    shoppingcart(req,res) {
-        res.render('users/shopping-cart',{ title: 'Shopping cart', layout: 'user-layout' });
-    }
+    // shoppingcart(req,res) {
+    //     cartController.displayCart(req,res);
+    //     res.render('users/shopping-cart',{ title: 'Shopping cart', layout: 'user-layout' });
+    // }
     // shopgrid(req,res) {
     //     res.render('users/shop-grid',{ title: 'Shop grid', layout: 'user-layout' });
     // }
