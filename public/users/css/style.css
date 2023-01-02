@@ -3466,3 +3466,8 @@ ol {
 		font-size: 24px;
 	}
 }
+
+.error {
+	color: red;
+	font-style: italic;
+}

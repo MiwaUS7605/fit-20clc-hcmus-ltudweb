@@ -1,4 +1,4 @@
-<form method="post" class="login-form spad">
+<form method="post" class="login-form spad" id="login-form">
   <section>
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -11,11 +11,11 @@
               </div>
               <div class="col-xl-6">
                 <div class="card-body p-md-5 text-black">
-                  {{#if error}}
-                        <div class="text-danger error">
-                        {{error}}
-                        </div>
-                    {{/if}}
+                  {{!-- {{#if error}}
+                  <div class="text-danger error">
+                    {{error}}
+                  </div>
+                  {{/if}} --}}
                   <h3 class="mb-5 text-uppercase">Sign in</h3>
                   <div class="form-outline mb-4">
                     <label class="form-label" for="email">Email</label>
@@ -29,13 +29,14 @@
                   <div class="row">
                     <div class="col-md-8 mb-6">
                       <div class="form-outline">
-                        <label class="form-label" for="sign-in-link">Not a member ?<a href="/users/auth/register">Create an
+                        <label class="form-label" for="sign-in-link">Not a member ?<a href="/users/auth/register">Create
+                            an
                             account</a></label>
                       </div>
                     </div>
                     <div class="col-md-4 mb-4">
                       <div class="form-outline">
-                        <button type="submit" class="site-btn ">Log in</button>
+                        <button type="submit" class="site-btn">Log in</button>
                       </div>
                     </div>
                   </div>
