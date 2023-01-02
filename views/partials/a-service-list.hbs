@@ -2,11 +2,16 @@
 <!-- Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
 <div class="page-breadcrumb bg-white">
-    <br><br>
-    <div class="row align-items-center">
-        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">CUSTOMER ACCOUNT</h4>
+    <div class="row">
+        <div class="col-lg-10 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">SERVICE LIST</h4>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 align-content-end">
+                <button class="site-btn"><a href="/admin/service-list/create" class="link-btn">Create</a></button>
         </div>
+        <br>
+        <br>
+        
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -37,11 +42,10 @@
                         <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
                             <select name="sort" class="form-select shadow-none row border-top">
                                 <option value="0">Sort by</option>
-                                <option value="1">A-Z name</option>
-                                <option value="2">Z-A name</option>
-                                <option value="3">A-Z email</option>
-                                <option value="4">Z-A email</option>
-                                <option value="5">Latest registration time</option>
+                                <option value="1">Latest</option>
+                                <option value="2">Ascending price</option>
+                                <option value="3">Descending price</option>
+                                <option value="4">Highest total purchase</option>
                             </select>
                         </div>
                     </div>
@@ -53,24 +57,28 @@
                     <table class="table no-wrap">
                         <thead>
                             <tr>
-                                <th class="border-top-0">No.</th>
+                                <th class="auto-index border-top-0">No.</th>
+                                <th class="border-top-0">ID</th>
                                 <th class="border-top-0">Name</th>
-                                <th class="border-top-0">Phone number</th>
-                                <th class="border-top-0">Address</th>
-                                <th class="border-top-0">Email</th>
-                                <th class="border-top-0">Ban/Unban</th>
+                                <th class="border-top-0">Price</th>
+                                <th class="border-top-0">Type</th>
+                                <th class="border-top-0">Total purchase</th>
+                                <th class="border-top-0">Availability</th>
+                                <th class="border-top-0"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{#each accounts}}
+                            {{#each services}}
                             {{!-- {{#each_fromto accounts pagination_info.first_result pagination_info.last_result}} --}}
-                                <tr>
+                                <tr class='clickable-row' data-href='/admin/service-list/edit'>
                                     <td></td>
-                                    <td class="txt-oflo">{{name}}</td>
-                                    <td>{{phonenumber}}</td>
-                                    <td class="txt-oflo">{{address}}</td>
-                                    <td><span class="text-success">{{email}}</span></td>
-                                    <td><button class="site-btn">BAN</button></td>
+                                    <td>{{idservice}}</td>
+                                    <td class="txt-oflo">{{servicename}}</td>
+                                    <td>{{price}}</td>
+                                    <td class="txt-oflo">{{typename}}</td>
+                                    <td><span class="text-success">{{totalpurchase}}</span></td>
+                                    <td>{{availability}}</td>
+                                    <td><button class="site-btn">Delete</button></td>
                                 </tr>
                             {{/each}}
                             

@@ -26,5 +26,6 @@ router.get('/shopping-cart', cartController.displayCart);
 router.get('/home', serviceController.featuredproducts);
 
 router.post('/add-to-cart', cartController.addToCart);
+router.post('/remove-from-cart', cartController.removeFromCart);
 
 module.exports = router;

@@ -1,13 +1,29 @@
 // Make the div behave like a button
 .btn-group,
-.btn-group-vertical {
+.btn-group-vertical,site-btn  {
+  font-size: 14px;
+  color: $white-color;
+  font-weight: 800;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 13px 30px 12px;
+  background: $primary-color;
+  border: none;
   position: relative;
   display: inline-flex;
   vertical-align: middle; // match .btn alignment given font-size hack above
 
-  > .btn {
+  > .btn,site-btn {
     position: relative;
     flex: 1 1 auto;
+    font-size: 14px;
+    color: $white-color;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 13px 30px 12px;
+    background: $primary-color;
+    border: none;
   }
 
   // Bring the hover, focused, and "active" buttons to the front to overlay

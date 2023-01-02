@@ -19,6 +19,17 @@
   @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-border-radius);
   @include transition($btn-transition);
 
+  .site-btn {
+    font-size: 14px;
+    color: $white-color;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 13px 30px 12px;
+    background: $primary-color;
+    border: none;
+  }
+
   &:hover {
     color: $body-color;
     text-decoration: if($link-hover-decoration == underline, none, null);
