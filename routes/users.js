@@ -21,7 +21,7 @@ router.get('/shop-details', serviceController.details);
 router.get('/shop-grid', serviceController.list);
 
 /* GET shopping cart page. */
-router.get('/shopping-cart', userController.shoppingcart);
+router.get('/shopping-cart', cartController.displayCart);
 
 router.get('/home', serviceController.featuredproducts);
 

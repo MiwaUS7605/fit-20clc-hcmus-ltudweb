@@ -287,7 +287,10 @@
     <script src="/users/js/mixitup.min.js"></script>
     <script src="/users/js/owl.carousel.min.js"></script>
     <script src="/users/js/main.js"></script>
-    <script>function addSer(idservice) {
+    <script>
+        function addSer(idservice) {
+        //let email = res.locals.user.email;
+        //    if (!email) return;
         alert(idservice)
             $.ajax({
                 url: '/users/add-to-cart',
@@ -295,14 +298,18 @@
                 data: { idservice },
                 dataType: 'json',
                 success: function (data) {
-                    alert("Add thanh cong")
+                    alert("Add to cart successfully!!")
                 },
                 error: function (data) {
-                    alert(data.idservice)
+                    alert("Can not add to cart...")
                 }
             })
-        }  </script>
-
+        }
+    </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/users/js/login.js"></script>
+    <script src="/users/js/register.js"></script>
 </body>
 
 </html>

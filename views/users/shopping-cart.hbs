@@ -33,50 +33,31 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{#each services}}
                             <tr>
                                 <td class="shoping__cart__item">
-                                    <img src="/users/img/cart/cart-1.jpg" alt="">
-                                    <h5>Vegetable’s Package</h5>
+                                    <img src={{image}} alt="">
+                                    <h5>{{servicename}}</h5>
                                 </td>
                                 <td class="shoping__cart__price">
-                                    $55.00
+                                    {{price}} VNĐ
                                 </td>
                                 <td class="shoping__cart__quantity">
                                     <div class="quantity">
                                         <div class="pro-qty">
                                             <input type="text" value="1">
+                                            {{!-- quatity here --}}
                                         </div>
                                     </div>
                                 </td>
                                 <td class="shoping__cart__total">
-                                    $110.00
+                                    {{!-- quantity*price --}} VNĐ
                                 </td>
                                 <td class="shoping__cart__item__close">
                                     <span class="icon_close"></span>
                                 </td>
                             </tr>
-                            {{!-- <tr>
-                                <td class="shoping__cart__item">
-                                    <img src="/users/img/cart/cart-2.jpg" alt="">
-                                    <h5>Fresh Garden Vegetable</h5>
-                                </td>
-                                <td class="shoping__cart__price">
-                                    $39.00
-                                </td>
-                                <td class="shoping__cart__quantity">
-                                    <div class="quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1">
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="shoping__cart__total">
-                                    $39.99
-                                </td>
-                                <td class="shoping__cart__item__close">
-                                    <span class="icon_close"></span>
-                                </td>
-                            </tr>--}}
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>

@@ -10,9 +10,9 @@ function route(app) {
         res.redirect('/users/home');
     })
     
-    // app.get('/', function(req,res) {
-    //     res.redirect('/users/home');
-    // })
+    app.get('/', function(req,res) {
+        res.redirect('/users/home');
+    })
      
     app.use('/admin', adminRouter);
     app.use('/users', usersRouter);
