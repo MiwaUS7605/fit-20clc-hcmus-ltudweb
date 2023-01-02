@@ -29,11 +29,13 @@ class CartController {
         if (!idService) return;
 
         let email = res.locals.user.email;
-        if (!email) return;
+        //if (!email) return;
 
         const idUser = await authService.getUserIdByEmail(email);
 
         await laundryService.removefromcart(idUser['idcustomer'], idService);
+
+        //res.render('users/shopping-cart');
     }
 
     async displayCart(req, res, next) {

@@ -23,7 +23,8 @@ class LaundryService {
     }
 
     async removefromcart(idcustomer, idservice) {
-        await db.connection.execute('delete from `cart` where idcustomer = ?, idservice = ?', [idcustomer, idservice]);
+        await db.connection.execute('delete from `cart` where idcustomer = ? and idservice = ?', [idcustomer, idservice]);
+        console.log('Im deleting this');
     }
 
     async getcart(userId) {
