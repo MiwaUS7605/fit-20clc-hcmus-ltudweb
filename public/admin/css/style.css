@@ -8714,7 +8714,16 @@ a.text-purple:hover, a.text-purple:focus {
   img {
     page-break-inside: avoid;
    }
-  
+   /* .site-btn {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 13px 30px 12px;
+    background: #7fad39;
+    border: none;
+  } */
   p,
   h2,
   h3 {
@@ -10387,3 +10396,30 @@ File: scss
 @media (max-width: 991.98px) {
   .do-block {
     display: block !important; } }
+
+.site-btn {
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 800;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 13px 20px 12px;
+  background: #7fad39;
+  border: none;
+  border-radius: 20px 20px;
+}
+
+tr td:first-child:before
+{
+  counter-increment: Serial;      
+  content: counter(Serial); 
+}
+.link-btn{
+  color:white;
+  background-color: none;
+ 
+}
+.cancel-btn{
+  color:white;
+  background: grey;
+}

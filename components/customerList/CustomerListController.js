@@ -21,7 +21,7 @@ class CustomerListController {
         //Render services results
         const countResult = Object.keys(accounts).length;
         //Paginate results
-        const items_per_page = 6;
+        const items_per_page = 2;
         const range_paginate = 4;
         var paginator = new Paginator(items_per_page,range_paginate);
         var pagination_info = paginator.build(countResult, currentPage); 
