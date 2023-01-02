@@ -1,13 +1,7 @@
 const db = require('../../db');
+const authService = require('../auth/AuthService');
 
 class LaundryService {
-    async search(name) {
-        //Using prepare statement to avoid SQL injection 
-        let query_str = "select * from service where servicename like ?";
-        const result = await db.connection.execute(query_str, [`%${name}%`]);
-        return result[0];
-    }
-
     async get(id) {
         //Using prepare statement to avoid SQL injection
         let query_str = "select *\
@@ -18,8 +12,8 @@ class LaundryService {
     }
 
     async addtocart(idcustomer, idservice) {
-        await db.connection.execute('insert into `cart` (idcart, idcustomer, idservice)\
-                                        values (1,?,?)', [idcustomer, idservice]);
+        await db.connection.execute('insert into `cart` (idcustomer, idservice)\
+                                        values (?,?)', [idcustomer, idservice]);
     }
 
     async getcart(userId) {
