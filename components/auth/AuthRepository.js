@@ -18,19 +18,9 @@ class AuthRepository {
     }
 
     async edit(nname, nphonenumber, naddress, npassword, user) {
-        console.log("Tui thu san o day na");
-        // nname = nname ? nname : user.name;
-        // npassword = npassword ? npassword : user.password;
-        // naddress = naddress ? naddress : user.address;
-        // nphonenumber = nphonenumber ? nphonenumber : user.phonenumber;
-
-        const salt = await bcrypt.genSalt(10);
-        const hash = await bcrypt.hash(npassword, salt);
-
         console.log("Tui dang edit");
         await db.connection.execute('update `customer` set `name` = ?, `phonenumber` = ?, `address` = ?, `password` = ?\
-                                    where `email` = ?', [nname,nphonenumber,naddress,hash, user.email]);
-        
+                                    where `email` = ?', [nname,nphonenumber,naddress,npassword, user.email]);
     }
 
 }

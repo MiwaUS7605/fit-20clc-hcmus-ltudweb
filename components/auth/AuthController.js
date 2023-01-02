@@ -59,7 +59,15 @@ class AuthController{
             console.log(res.locals.user);
 
             name = name ? name : res.locals.user.name;
-            new_password = new_password ? new_password : res.locals.user.password;
+            if (new_password !== undefined){
+              const salt = await bcrypt.genSalt(10);
+              const hash = await bcrypt.hash(new_password, salt);
+
+              new_password = hash;
+            }
+            else{
+              new_password = res.locals.user.password;
+            }
             address = address ? address : res.locals.user.address;
             phonenumber = phonenumber ? phonenumber : res.locals.user.phonenumber;
             await authService.editProfile(name, phonenumber,address, new_password, res.locals.user);
