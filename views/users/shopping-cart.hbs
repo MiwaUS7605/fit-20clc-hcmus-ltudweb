@@ -40,21 +40,22 @@
                                     <h5>{{servicename}}</h5>
                                 </td>
                                 <td class="shoping__cart__price">
-                                    {{price}} VNĐ
+                                     {{price}} VNĐ
                                 </td>
                                 <td class="shoping__cart__quantity">
                                     <div class="quantity">
                                         <div class="pro-qty">
-                                            <input type="text" value="1">
-                                            {{!-- quatity here --}}
+                                            <input type="text" value={{number}}>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="shoping__cart__total">
-                                    {{!-- quantity*price --}} VNĐ
+                                    {{!-- number*price --}} VNĐ
                                 </td>
                                 <td class="shoping__cart__item__close">
+                                    <button class="service-btn" onclick="removeSer(this.value)" value="{{idservice}}">
                                     <span class="icon_close"></span>
+                                    </button>
                                 </td>
                             </tr>
                             {{/each}}

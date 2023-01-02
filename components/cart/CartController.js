@@ -7,23 +7,33 @@ const db = require('../../db');
 class CartController {
     async addToCart(req, res, next) {
         const idService = req.body.idservice;
-        console.log(idService);//
         if (!idService) return;
 
         const service = await laundryService.get(idService);
         console.log(service);//
         if (!service) return;
 
-        try {
-            console.log(res.locals.user);//
+        let email = res.locals.user.email;
+        if (!email) return;
 
-            let email = res.locals.user.email;
-            if (!email) return;
-            const idUser = await authService.getUserIdByEmail(email);
-            await laundryService.addtocart(idUser['idcustomer'], idService);
-        } catch (e) {
-            res.render('users/shopping-cart', { error: e.message });
-        }
+        const idUser = await authService.getUserIdByEmail(email);
+
+        // const check = await laundryService.checkcart(idUser, idService);
+        // if (check.idservice) return;
+
+        await laundryService.addtocart(idUser['idcustomer'], idService);
+    }
+
+    async removeFromCart(req, res, next) {
+        const idService = req.body.idservice;
+        if (!idService) return;
+
+        let email = res.locals.user.email;
+        if (!email) return;
+
+        const idUser = await authService.getUserIdByEmail(email);
+
+        await laundryService.removefromcart(idUser['idcustomer'], idService);
     }
 
     async displayCart(req, res, next) {
@@ -35,7 +45,9 @@ class CartController {
         services = await laundryService.getcart(idUser['idcustomer']);
 
         if (!services) return next(createError(404));
-        res.render('users/shopping-cart', { services });
+        console.log(services);
+
+        res.render('users/shopping-cart', { services});
     }
 }
 
