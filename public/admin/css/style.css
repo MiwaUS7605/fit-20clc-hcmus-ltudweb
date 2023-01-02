@@ -120,7 +120,8 @@ body {
   line-height: 1.5;
   color: #3e5569;
   text-align: left;
-  background-color: #eef5f9; }
+  background-color: #eef5f9; 
+  counter-reset: Serial;}
 
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important; }
@@ -8708,9 +8709,12 @@ a.text-purple:hover, a.text-purple:focus {
     page-break-inside: avoid; }
   thead {
     display: table-header-group; }
+
   tr,
   img {
-    page-break-inside: avoid; }
+    page-break-inside: avoid;
+   }
+  
   p,
   h2,
   h3 {

@@ -124,6 +124,7 @@
 }
 
 
+
 // Table variants
 //
 // Table variants set the table cell backgrounds, border colors
@@ -145,6 +146,7 @@
     .table-responsive#{$infix} {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
+
     }
   }
 }
