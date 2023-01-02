@@ -305,6 +305,22 @@
                 }
             })
         }
+
+        function paginationDisplay(page) {
+            $.ajax({
+                method: "get",
+                url: $(location).attr("href"),
+                datatype: "json",
+                data: { page: page },
+                success: function (data) {
+                    $("#service-partial").empty().append($(data).find("#service-partial").children());
+                    $("#paginator-items").empty().append($(data).find("#paginator-items").children());
+                },
+                error: function (arg, data, value) {
+                    alert(page);
+                }
+            });
+        }
     </script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
