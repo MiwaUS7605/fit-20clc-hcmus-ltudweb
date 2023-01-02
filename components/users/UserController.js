@@ -11,8 +11,8 @@ class UserController {
     contact(req,res) {
         res.render('users/contact',{ title: 'Contact', layout: 'user-layout' });
     }
-    shopingcart(req,res) {
-        res.render('users/shoping-cart',{ title: 'Shoping cart', layout: 'user-layout' });
+    shoppingcart(req,res) {
+        res.render('users/shopping-cart',{ title: 'Shopping cart', layout: 'user-layout' });
     }
     // shopgrid(req,res) {
     //     res.render('users/shop-grid',{ title: 'Shop grid', layout: 'user-layout' });
