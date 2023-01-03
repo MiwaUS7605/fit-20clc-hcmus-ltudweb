@@ -1,4 +1,3 @@
-const e = require('express');
 const db = require('../../db');
 const authService = require('../auth/AuthService');
 

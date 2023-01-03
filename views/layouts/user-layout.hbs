@@ -290,19 +290,20 @@
         function addSer(idservice) {
             //let email = res.locals.user.email;
             //if (!email) return;
-            alert(idservice);
+            //alert(idservice);
             $.ajax({
                 url: '/users/add-to-cart',
                 method: 'post',
                 data: { idservice: idservice },
                 //dataType: 'json',
                 success: function (data) {
-                    alert("Add to cart successfully!!")
+                    alert("Add to cart successfully!!");
                 },
                 error: function (data) {
-                    alert("Can not add to cart...")
+                    alert("Can not add to cart...");
                 }
             })
+            alert("Add to cart successfully!!");
         }
 
         function paginationDisplay(page) {
@@ -324,7 +325,7 @@
         function removeSer(idservice) {
             //let email = res.locals.user.email;
             //if (!email) return;
-            alert(idservice);
+            //alert(idservice);
             $.ajax({
                 url: '/users/remove-from-cart',
                 method: 'post',
@@ -378,6 +379,7 @@
         type="text/javascript"></script>
     <script src="/users/js/login.js"></script>
     <script src="/users/js/register.js"></script>
+    <script src="/users/js/checkout.js"></script>
 </body>
 
 </html>

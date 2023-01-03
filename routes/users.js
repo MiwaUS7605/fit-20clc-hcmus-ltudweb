@@ -3,13 +3,14 @@ const router = express.Router();
 const userController = require('../components/users/UserController');
 const serviceController = require('../components/services/ServiceController');
 const cartController = require('../components/cart/CartController');
+const checkoutController = require('../components/checkout/CheckoutController');
 
 /* GET home page. */
 
 //router.get('/home', userController.home);
 
 /* GET check out page. */
-router.get('/checkout',userController.checkout);
+router.get('/checkout',checkoutController.displayCheckout);
 
 /* GET contact page. */
 router.get('/contact', userController.contact);
@@ -28,5 +29,9 @@ router.get('/home', serviceController.featuredproducts);
 router.post('/add-to-cart', cartController.addToCart);
 
 router.post('/remove-from-cart', cartController.removeFromCart);
+
+router.post('/place-order', checkoutController.placeOrder);
+
+
 
 module.exports = router;
