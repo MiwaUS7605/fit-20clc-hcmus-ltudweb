@@ -56,7 +56,31 @@ class CartController {
 
         const idUser = await authService.getUserIdByEmail(email);
         
-        const promise = await laundryService.removefromcart(idUser['idcustomer'], idService);
+        await laundryService.removefromcart(idUser['idcustomer'], idService);
+    }
+
+    async incrQuantity(req, res, next) {
+        const {idservice: idService}= req.body;
+        if (!idService) return;
+
+        let email = res.locals.user.email;
+        if (!email) return;
+
+        const idUser = await authService.getUserIdByEmail(email);
+        
+        await laundryService.incrQuantity(idUser['idcustomer'], idService);
+    }
+
+    async descQuantity(req, res, next) {
+        const {idservice: idService}= req.body;
+        if (!idService) return;
+
+        let email = res.locals.user.email;
+        if (!email) return;
+
+        const idUser = await authService.getUserIdByEmail(email);
+        
+        await laundryService.descQuantity(idUser['idcustomer'], idService);
     }
 
 }

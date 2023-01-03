@@ -30,8 +30,9 @@ router.post('/add-to-cart', cartController.addToCart);
 
 router.post('/remove-from-cart', cartController.removeFromCart);
 
+router.post('/increase-quantity', cartController.incrQuantity);
+router.post('/decrease-quantity', cartController.descQuantity);
+
 router.post('/place-order', checkoutController.placeOrder);
-
-
 
 module.exports = router;

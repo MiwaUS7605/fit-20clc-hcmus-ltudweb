@@ -33,6 +33,28 @@
                             </tr>
                         </thead>
                         <tbody id="cart-item">
+
+                            {{!-- /*-------------------
+                                Quantity change
+                            ---------------------*/ --}}
+                            <script>
+                                var proQty = $('.pro-qty');
+                                proQty.on('click', '.qtybtn', function () {
+                                    var $button = $(this);
+                                    var oldValue = $button.parent().find('input').val();
+                                    if ($button.hasClass('inc')) {
+                                        var newVal = parseFloat(oldValue) + 1;
+                                    } else {
+                                        // Don't allow decrementing below one
+                                        if (oldValue > 1) {
+                                            var newVal = parseFloat(oldValue) - 1;
+                                        } else {
+                                            newVal = 1;
+                                        }
+                                    }
+                                    $button.parent().find('input').val(newVal);
+                                });
+                            </script>
                             {{#each services}}
                             <tr>
                                 <td class="shoping__cart__item">
@@ -40,14 +62,18 @@
                                     <h5>{{servicename}}</h5>
                                 </td>
                                 <td class="shoping__cart__price">
-                                     {{price}} VNĐ
+                                    {{price}} VNĐ
                                 </td>
                                 <td class="shoping__cart__quantity">
                                     <div class="quantity">
                                         <div class="pro-qty">
-                                            <span class="dec qtybtn">-</span>
-                                            <input type="text" value={{number}} onclick="editQuantity({{idservice}})" disabled>
-                                            <span class="inc qtybtn">+</span>
+                                            <button class="service-btn" value="{{idservice}}" onclick="descQuantity(this.value)">
+                                                <span class="dec qtybtn">-</span>
+                                            </button>
+                                            <input type="text" value="{{number}}" disabled>
+                                            <button class="service-btn" value="{{idservice}}" onclick="incrQuantity(this.value)">
+                                                <span class="inc qtybtn">+</span>
+                                            </button>
                                         </div>
                                     </div>
                                 </td>
@@ -56,7 +82,7 @@
                                 </td>
                                 <td class="shoping__cart__item__close">
                                     <button class="service-btn" onclick="removeSer(this.value)" value="{{idservice}}">
-                                    <span class="icon_close"></span>
+                                        <span class="icon_close"></span>
                                     </button>
                                 </td>
                             </tr>

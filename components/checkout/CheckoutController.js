@@ -17,11 +17,8 @@ class CheckoutController {
         //and get the latest processed order
         if (services.length == 0) {
             services = await checkoutService.getLatestOrder(idUser['idcustomer']);
-            console.log("You have process order before!");
+            // console.log("You have process order before!");
         }
-        console.log(services);
-        console.log(services.length);
-
         var sub_total = await laundryService.getSubtotal(services);
 
         res.render('users/checkout', { services, sub_total});

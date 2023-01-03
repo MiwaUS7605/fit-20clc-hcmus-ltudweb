@@ -34,6 +34,21 @@ class LaundryService {
         return result[0];
     }
 
+    async incrQuantity(idcustomer, idservice) {
+        let query_str = "update `cart`\
+                        set number = number + 1\
+                        where idcustomer = ? and idservice = ?";
+        await db.connection.execute(query_str, [idcustomer, idservice]);
+    }
+
+    async descQuantity(idcustomer, idservice) {
+        let query_str = "update `cart`\
+                        set number = number - 1\
+                        where idcustomer = ? and idservice = ?";
+                        
+        await db.connection.execute(query_str, [idcustomer, idservice]);
+    }
+
     async getSubtotal(services) {
         var sub_total = 0;
         for (var service of services) {
