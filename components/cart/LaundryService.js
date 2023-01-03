@@ -34,6 +34,14 @@ class LaundryService {
         const result = await db.connection.execute(query_str, [userId]);
         return result[0];
     }
+
+    async getSubtotal(services) {
+        var sub_total = 0;
+        for (var service of services) {
+            sub_total += service['number']*service['price'];
+        }
+        return sub_total;
+    }
 }
 
 module.exports = new LaundryService;

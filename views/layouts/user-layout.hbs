@@ -325,7 +325,7 @@
         function removeSer(idservice) {
             //let email = res.locals.user.email;
             //if (!email) return;
-            alert(idservice)
+            //  alert(idservice)
             $.ajax({
                 url: '/users/remove-from-cart',
                 method: 'post',
@@ -333,6 +333,14 @@
                 dataType: 'json',
                 success: function (data) {
                     alert("Remove from cart successfully!!")
+                    console.log(location.href);
+                    $.get(location.href, function (data) {
+						$("#cart-item").empty().append($(data).find("#cart-item").children());
+                    }); 
+
+                    $.get(location.href, function (data) {
+						$("#pre-checkout").empty().append($(data).find("#pre-checkout").children());
+                    }); 
                 },
                 error: function (data) {
                     alert("Can not remove...")

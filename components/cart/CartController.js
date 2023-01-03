@@ -5,6 +5,23 @@ const qs = require('qs');
 const db = require('../../db');
 
 class CartController {
+
+    async displayCart(req, res, next) {
+        let email = res.locals.user.email;
+        if (!email) return;
+        const idUser = await authService.getUserIdByEmail(email);
+
+        let services = [];
+        services = await laundryService.getcart(idUser['idcustomer']);
+
+        if (!services) return next(createError(404));
+        console.log(services);
+
+        var sub_total = await laundryService.getSubtotal(services);
+
+        res.render('users/shopping-cart', { services, sub_total});
+    }
+
     async addToCart(req, res, next) {
         const idService = req.body.idservice;
         if (!idService) return;
@@ -34,23 +51,8 @@ class CartController {
         const idUser = await authService.getUserIdByEmail(email);
 
         await laundryService.removefromcart(idUser['idcustomer'], idService);
-
-        //res.render('users/shopping-cart');
     }
 
-    async displayCart(req, res, next) {
-        let email = res.locals.user.email;
-        if (!email) return;
-        const idUser = await authService.getUserIdByEmail(email);
-
-        let services = [];
-        services = await laundryService.getcart(idUser['idcustomer']);
-
-        if (!services) return next(createError(404));
-        console.log(services);
-
-        res.render('users/shopping-cart', { services});
-    }
 }
 
 module.exports = new CartController;

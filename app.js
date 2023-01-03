@@ -44,6 +44,11 @@ hbs.handlebars.registerHelper('each_fromto', function(arr, from, to, options) {
   return result.join('');
 });
 
+hbs.handlebars.registerHelper('multiply', function(arg1, arg2, options) {
+  return arg1*arg2;
+});
+
+
 const viewPath = path.join(__dirname, 'views');
 app.set('views', viewPath);
 app.set('view engine', 'hbs');
