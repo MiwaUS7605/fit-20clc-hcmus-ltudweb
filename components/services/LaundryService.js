@@ -83,33 +83,18 @@ class LaundryService {
         return result[0];
     }
 
-    async rating(rate, message, idservice, iduser) {
+    async rating(rate, message, idservice, idcustomer) {
+        await db.connection.execute('insert into `rating`(rate,message,idservice,idcustomer)\
+                                    values (?,?,?,?)', [rate, message, idservice, idcustomer]);
+    }
+
+    async getrating(idservice){
         let query_str = "";
+        query_str = 'select * from `rating` where `idservice` = ?';
 
-        query_str = 'insert into `rating`(`rate`,`message`,`idservice`,`idcustomer`)\
-                    values (?,?,?,?)';
-        // switch (rate) {
-        //     case '1':
-        //         break;
-        //     case '2':
+        const result = await db.connection.execute(query_str, [idservice]);
 
-        //         break;
-        //     case '3':
-
-        //         break;
-        //     case '4':
-
-        //         break;
-        //     case '5':
-
-        //         break;
-        // }
-        await db.connection.execute(query_str, [rate, message, idservice, iduser]);
-
-        query_str = 'select * from `rating` where `idcustomer` = ?';
-
-        const result = await db.connection.execute(query_str, [iduser]);
-        console.log(result);
+        console.log(result[0]);
         return result[0];
     }
 }

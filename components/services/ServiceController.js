@@ -51,7 +51,13 @@ class ServiceController {
             products = await laundryService.getNumber(4);
         }
         if (!products) return next(createError(404));
-        res.render('users/shop-details', { service,products});
+
+        let ratings = [];
+        
+        ratings = await laundryService.getrating(serviceId);
+        const countResult = Object.keys(ratings).length;
+        
+        res.render('users/shop-details', { service,products,ratings,countResult});
     }
 
     async featuredproducts(req, res, next) {
@@ -69,22 +75,22 @@ class ServiceController {
     }
 
     async ratingproduct(req, res) {
-        const { rate,message,idservice } = req.body;
+        const { rate,message, idservice } = req.body;
 
-        let email = res.locals.user.email;
-        //if (!email) return;
-        
-        let ratings = [];
-        try{
+        console.log(rate, message, idservice);
+
+        try{ 
+            let email = res.locals.user.email;
+            //if (!email) return;
+            
             const iduser = await authService.getUserIdByEmail(email);
-            ratings = await laundryService.rating(rate,message,idservice,iduser);
+            await laundryService.rating(rate,message,idservice,iduser['idcustomer']);
+            console.log(iduser);
         }catch(e){
             res.render('users/shop-details', {error: e.message});
             return;
         }
-
-        const countResult = Object.keys(ratings).length;
-        res.render('users/shop-details', {ratings, countResult});
+        res.render('users/home');
     }
 }
 
