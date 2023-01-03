@@ -7,19 +7,25 @@ const db = require('../../db');
 class CartController {
 
     async displayCart(req, res, next) {
-        let email = res.locals.user.email;
-        if (!email) return;
-        const idUser = await authService.getUserIdByEmail(email);
+        try{
+            let email = res.locals.user.email;
+            if (!email) return;
+            const idUser = await authService.getUserIdByEmail(email);
+    
+            let services = [];
+            services = await laundryService.getcart(idUser['idcustomer']);
+    
+            if (!services) return next(createError(404));
+            console.log(services);
+    
+            var sub_total = await laundryService.getSubtotal(services);
+    
+            res.render('users/shopping-cart', { services, sub_total});
 
-        let services = [];
-        services = await laundryService.getcart(idUser['idcustomer']);
-
-        if (!services) return next(createError(404));
-        console.log(services);
-
-        var sub_total = await laundryService.getSubtotal(services);
-
-        res.render('users/shopping-cart', { services, sub_total});
+        }catch(e){
+            res.render('users/shopping-cart', {error: e.message});
+            return;
+        }
     }
 
     async addToCart(req, res, next) {

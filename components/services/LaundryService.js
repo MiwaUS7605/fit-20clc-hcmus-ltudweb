@@ -82,6 +82,36 @@ class LaundryService {
         const result = await db.connection.execute(query_str, [`%${name}%`, idtype, min, max]);
         return result[0];
     }
+
+    async rating(rate, message, idservice, iduser) {
+        let query_str = "";
+
+        query_str = 'insert into `rating`(`rate`,`message`,`idservice`,`idcustomer`)\
+                    values (?,?,?,?)';
+        // switch (rate) {
+        //     case '1':
+        //         break;
+        //     case '2':
+
+        //         break;
+        //     case '3':
+
+        //         break;
+        //     case '4':
+
+        //         break;
+        //     case '5':
+
+        //         break;
+        // }
+        await db.connection.execute(query_str, [rate, message, idservice, iduser]);
+
+        query_str = 'select * from `rating` where `idcustomer` = ?';
+
+        const result = await db.connection.execute(query_str, [iduser]);
+        console.log(result);
+        return result[0];
+    }
 }
 
 module.exports = new LaundryService;

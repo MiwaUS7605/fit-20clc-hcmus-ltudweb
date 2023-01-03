@@ -81,7 +81,8 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab" aria-selected="true">Reviews
-                                <span>(1)</span></a>
+                                <span>({{countResult}})</span></a>
+
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -95,6 +96,13 @@
                             <div class="product__details__tab__desc">
                                 <h6>Products Reviews</h6>
                                 <p>{{service.rating}} reviews</p>
+
+                                {{#each ratings}}
+                                <div class="container">
+                                    <h7>Annonymous: {{message}}</h>
+                                        <p>{{rate}} *</p>
+                                </div>
+                                {{/each}}
                             </div>
                         </div>
                     </div>
@@ -104,6 +112,44 @@
     </div>
 </section>
 <!-- Product Details Section End -->
+
+
+<!-- Contact Form Begin -->
+<div class="contact-form spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="contact__form__title">
+                    <h2>Leave A Review!!</h2>
+                </div>
+            </div>
+        </div>
+        <form method="post">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="rate">
+                        <input type="radio" id="star5" name="rate" value="5" />
+                        <label for="star5" title="text">5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" />
+                        <label for="star4" title="text">4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" />
+                        <label for="star3" title="text">3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="text">2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="text">1 star</label>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 text-center">
+                    <textarea name="message" placeholder="Your message"></textarea>
+                    <button type="submit" class="site-btn">SEND REVIEW</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Contact Form End -->
 
 <!-- Related Product Section Begin -->
 <section class="related-product">

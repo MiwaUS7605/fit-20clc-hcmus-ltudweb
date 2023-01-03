@@ -78,6 +78,29 @@ INSERT INTO `customer` VALUES (1,'Lê Hoàng Khanh Nguyên ','123478909','ABC','
 UNLOCK TABLES;
 
 --
+-- Table structure for table `image`
+--
+
+DROP TABLE IF EXISTS `image`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `image` (
+  `idservice` int(11) NOT NULL,
+  `image` varchar(256) COLLATE utf8mb4_vietnamese_ci DEFAULT NULL,
+  PRIMARY KEY (`idservice`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `image`
+--
+
+LOCK TABLES `image` WRITE;
+/*!40000 ALTER TABLE `image` DISABLE KEYS */;
+/*!40000 ALTER TABLE `image` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `order`
 --
 
@@ -132,6 +155,31 @@ LOCK TABLES `orderdetail` WRITE;
 /*!40000 ALTER TABLE `orderdetail` DISABLE KEYS */;
 INSERT INTO `orderdetail` VALUES (1,1,1),(1,2,1),(1,3,1),(1,4,1),(1,5,1);
 /*!40000 ALTER TABLE `orderdetail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rating`
+--
+
+DROP TABLE IF EXISTS `rating`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rating` (
+  `idservice` int(11) NOT NULL,
+  `idcustomer` int(11) NOT NULL,
+  `rate` int(11) DEFAULT '0',
+  `message` varchar(45) COLLATE utf8mb4_vietnamese_ci DEFAULT '"No information"',
+  PRIMARY KEY (`idservice`,`idcustomer`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rating`
+--
+
+LOCK TABLES `rating` WRITE;
+/*!40000 ALTER TABLE `rating` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rating` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -208,4 +256,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-02 15:24:24
+-- Dump completed on 2023-01-03 16:16:28

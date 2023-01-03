@@ -1,4 +1,5 @@
 const laundryService = require('./LaundryService');
+const authService = require('../auth/AuthService');
 const createError = require('http-errors');
 const qs = require('qs');
 const Paginator = require('paginator');
@@ -65,6 +66,25 @@ class ServiceController {
         if (!services) return next(createError(404));
         const { sort, ...withoutSort } = req.query;
         res.render('users/home',  { services, originalUrl: `${req.baseUrl}?${qs.stringify(withoutSort)}`});
+    }
+
+    async ratingproduct(req, res) {
+        const { rate,message,idservice } = req.body;
+
+        let email = res.locals.user.email;
+        //if (!email) return;
+        
+        let ratings = [];
+        try{
+            const iduser = await authService.getUserIdByEmail(email);
+            ratings = await laundryService.rating(rate,message,idservice,iduser);
+        }catch(e){
+            res.render('users/shop-details', {error: e.message});
+            return;
+        }
+
+        const countResult = Object.keys(ratings).length;
+        res.render('users/shop-details', {ratings, countResult});
     }
 }
 
