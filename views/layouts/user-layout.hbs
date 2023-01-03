@@ -60,8 +60,10 @@
             <ul>
                 <li class="active"><a href="/users/home">Home</a></li>
                 <li><a href="/users/shop-grid">Shop</a></li>
-                <li><a href="/users/shopping-cart">Cart</a></li>
-                <li><a href="/users/checkout">Check Out</a></li>
+                {{#if user}}
+                    <li><a href="/users/shopping-cart">Cart</a></li>
+                    <li><a href="/users/checkout">Check Out</a></li>
+                {{/if}}
                 {{!-- <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
                         <li><a href="/users/shop-details">Shop Details</a></li>
@@ -142,8 +144,10 @@
                         <ul>
                             <li class="active"><a href="/users/home">Home</a></li>
                             <li><a href="/users/shop-grid">Shop</a></li>
+                            {{#if user}}
                             <li><a href="/users/shopping-cart">Cart</a></li>
                             <li><a href="/users/checkout">Check Out</a></li>
+                            {{/if}}
                             <li><a href="/users/contact">Contact</a></li>
                         </ul>
                     </nav>
@@ -357,22 +361,49 @@
 
         }
 
-        /*
-        functions editQuantity(idservice) {
-            alert(idservice)
+        function incrQuantity(idservice) {
             $.ajax({
-                url: '/users/edit-quantity',
+                url: '/users/increase-quantity',
                 method: 'post',
-                data: { idservice },
+                data: {idservice},
                 dataType: 'json',
                 success: function (data) {
-                    alert("Edit successfully!!")
+                    alert("Edit successfully!!");
                 },
                 error: function (data) {
-                    alert("Edit failed...")
+                    alert("Edit failed...");
                 }
-            })
-        }*/
+            });
+            $.get(location.href, function (data) {  
+                $("#cart-item").empty().append($(data).find("#cart-item").children());
+            });
+
+            $.get(location.href, function (data) {
+                $("#pre-checkout").empty().append($(data).find("#pre-checkout").children());
+            });
+        }
+
+        function descQuantity(idservice) {
+            $.ajax({
+                url: '/users/decrease-quantity',
+                method: 'post',
+                data: {idservice},
+                dataType: 'json',
+                success: function (data) {
+                    alert("Edit successfully!!");
+                },
+                error: function (data) {
+                    alert("Edit failed...");
+                }
+            });
+            $.get(location.href, function (data) {  
+                $("#cart-item").empty().append($(data).find("#cart-item").children());
+            });
+
+            $.get(location.href, function (data) {
+                $("#pre-checkout").empty().append($(data).find("#pre-checkout").children());
+            });
+        }
     </script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"
