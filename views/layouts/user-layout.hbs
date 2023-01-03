@@ -291,12 +291,12 @@
         function addSer(idservice) {
             //let email = res.locals.user.email;
             //if (!email) return;
-            alert(idservice)
+            alert(idservice);
             $.ajax({
                 url: '/users/add-to-cart',
                 method: 'post',
-                data: { idservice },
-                dataType: 'json',
+                data: { idservice: idservice },
+                //dataType: 'json',
                 success: function (data) {
                     alert("Add to cart successfully!!")
                 },
@@ -321,31 +321,40 @@
                 }
             });
         }
-        
+
         function removeSer(idservice) {
             //let email = res.locals.user.email;
             //if (!email) return;
-            //  alert(idservice)
+            alert(idservice);
             $.ajax({
                 url: '/users/remove-from-cart',
                 method: 'post',
-                data: { idservice },
-                dataType: 'json',
-                success: function (data) {
-                    alert("Remove from cart successfully!!")
-                    console.log(location.href);
-                    $.get(location.href, function (data) {
-						$("#cart-item").empty().append($(data).find("#cart-item").children());
-                    }); 
+                data: { idservice: idservice },
+                dataType: 'text',
+                //Not return POST status
+                //success: function (data) {
+                    //alert("Remove from cart successfully!!");
+                    //$.get(location.href, function (data) {
+                       //$("#cart-item").empty().append($(data).find("#cart-item").children());
+                    //});
 
-                    $.get(location.href, function (data) {
-						$("#pre-checkout").empty().append($(data).find("#pre-checkout").children());
-                    }); 
-                },
+                    //$.get(location.href, function (data) {
+                        //$("#pre-checkout").empty().append($(data).find("#pre-checkout").children());
+                    //});
+                //},
                 error: function (data) {
-                    alert("Can not remove...")
+                    alert("Can not remove...");
                 }
-            })
+            });
+            alert("Remove from cart successfully!!");
+            $.get(location.href, function (data) {  
+                $("#cart-item").empty().append($(data).find("#cart-item").children());
+            });
+
+            $.get(location.href, function (data) {
+                $("#pre-checkout").empty().append($(data).find("#pre-checkout").children());
+            });
+
         }
 
         /*

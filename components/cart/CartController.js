@@ -49,8 +49,8 @@ class CartController {
         //if (!email) return;
 
         const idUser = await authService.getUserIdByEmail(email);
-
-        await laundryService.removefromcart(idUser['idcustomer'], idService);
+        
+        const promise = await laundryService.removefromcart(idUser['idcustomer'], idService);
     }
 
 }
