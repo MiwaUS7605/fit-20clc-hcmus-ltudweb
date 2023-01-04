@@ -10423,3 +10423,18 @@ tr td:first-child:before
   color:white;
   background: grey;
 }
+
+.boldtextbox{
+  border: 2px solid;
+}
+
+.small-btn{
+  color: #ffffff;
+  background: #7fad39;
+  border: none;
+  border-radius: 20px 20px;
+}
+.required{
+  color: red;
+
+}

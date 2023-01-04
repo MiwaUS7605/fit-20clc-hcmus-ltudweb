@@ -7,7 +7,7 @@
                 <h4 class="page-title">SERVICE LIST</h4>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 align-content-end">
-                <button class="site-btn"><a href="/admin/service-list/create" class="link-btn">Create</a></button>
+                <button class="site-btn"><a href="/admin/service-list/create-info" class="link-btn">Create</a></button>
         </div>
         <br>
         <br>
@@ -68,19 +68,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                             <form method="post"></form>
                             {{#each services}}
                             {{!-- {{#each_fromto accounts pagination_info.first_result pagination_info.last_result}} --}}
+                           
+
+                            
                                 <tr class='clickable-row' data-href='/admin/service-list/edit'>
                                     <td></td>
-                                    <td>{{idservice}}</td>
+                                    <td name="id" value={{idservice}}>{{idservice}}</td>
                                     <td class="txt-oflo">{{servicename}}</td>
                                     <td>{{price}}</td>
                                     <td class="txt-oflo">{{typename}}</td>
                                     <td><span class="text-success">{{totalpurchase}}</span></td>
                                     <td>{{availability}}</td>
-                                    <td><button class="site-btn">Delete</button></td>
+                                    <td><button type="submit" class="site-btn" onclick="deleteService()">Delete</button></td>
                                 </tr>
                             {{/each}}
+                            </form>
                             
                         </tbody>
                     </table>

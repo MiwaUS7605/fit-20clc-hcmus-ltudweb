@@ -31,13 +31,31 @@ class ServiceListController {
                                         countResult, 
                                         pagination_info, 
                                         items_per_page});
-    }
-    async showCreateService (req, res, next){
-        res.render('admin/create-service',{layout: 'admin-layout'});
-    }
+    };
+    async showCreateInfoService (req, res, next){
+        res.render('admin/create-info-service',{layout: 'admin-layout'});
+    };
     async showEditService (req, res, next){
         res.render('admin/edit-service',{layout: 'admin-layout'});
-    }
+    };
+    async showCreateImageService (req, res, next){
+        res.render('admin/create-image-service',{layout: 'admin-layout'});
+    };
+    async createService (req, res){
+        console.log('helloo');
+
+        let {name,price,type,imageLink,description}=req.body;
+        try{
+            imageLink=imageLink ? imageLink:"null";
+            description = description ?description :"No information";
+            await serviceListRepo.createService(name,price,type,imageLink,description);
+        }catch(e){
+            res.render('admin/service-list/create-info', { error: e.message });
+            return;
+        }
+        res.redirect('/admin/service-list/create-image');
+
+    };
     async details(req, res, next) {
         const serviceId = req.params['serviceId'];
         const service = await serviceListRepo.get(serviceId);
@@ -68,6 +86,40 @@ class ServiceListController {
         const { sort, ...withoutSort } = req.query;
         res.render('users/home',  { services, originalUrl: `${req.baseUrl}?${qs.stringify(withoutSort)}`});
     }
+
+    async insertImg(req,res,next){
+        console.log('hahahah please');
+        const {imageLink}=req.body;
+        console.log(imageLink);
+        let service=[]
+        try{
+            service=await serviceListRepo.getMaxID();
+            console.log(service.idservice);
+            
+            await serviceListRepo.insertImage(imageLink,service.idservice);
+        }catch(e){
+            res.render('/admin/service-list/create-image', { error: e.message });
+            return;
+        }
+        res.redirect('/admin/service-list/create-image');
+    }
+
+    async deleteService(req, res, next){
+        console.log("delete service");
+        const {id}=req.body;
+        console.log(id);
+        try{
+            await serviceListRepo.deleteService(id);
+        }catch(e){
+            res.render('/admin/service-list', { error: e.message });
+            console.log("done");
+            return;
+        }
+        res.redirect('/admin/service-list');
+
+    }
 }
+
+
 
 module.exports = new ServiceListController;

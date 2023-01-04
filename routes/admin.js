@@ -16,7 +16,12 @@ router.get('/signin', adminController.signin);
 router.get('/signup', adminController.signup);
 router.get('/customer-list',customerListController.list);
 router.get('/service-list',serviceListController.list);
-router.get('/service-list/create',serviceListController.showCreateService);
+router.post('/service-list',serviceListController.list);
+router.get('/service-list/create-info',serviceListController.showCreateInfoService);
+router.post('/service-list/create-info',serviceListController.createService);
+router.get('/service-list/create-image',serviceListController.showCreateImageService);
+router.post('/service-list/create-image',serviceListController.insertImg);
 router.get('/service-list/edit',serviceListController.showEditService);
+
 
 module.exports = router;
