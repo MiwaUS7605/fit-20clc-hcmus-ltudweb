@@ -37,10 +37,10 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                {{!-- <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li> --}}
+                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>~</span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
+            {{!-- <div class="header__cart__price">item: <span>$150.00</span></div> --}}
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -61,8 +61,8 @@
                 <li class="active"><a href="/users/home">Home</a></li>
                 <li><a href="/users/shop-grid">Shop</a></li>
                 {{#if user}}
-                    <li><a href="/users/shopping-cart">Cart</a></li>
-                    <li><a href="/users/checkout">Check Out</a></li>
+                <li><a href="/users/shopping-cart">Cart</a></li>
+                <li><a href="/users/checkout">Check Out</a></li>
                 {{/if}}
                 {{!-- <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
@@ -155,10 +155,10 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            {{!-- <li><a href="#"><i class="fa fa-heart"></i> <span></span></a></li> --}}
+                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span></span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+                        {{!-- <div class="header__cart__price">item: <span>$150.00</span></div> --}}
                     </div>
                 </div>
             </div>
@@ -292,22 +292,19 @@
     <script src="/users/js/main.js"></script>
     <script>
         function addSer(idservice) {
-            //let email = res.locals.user.email;
-            //if (!email) return;
             //alert(idservice);
             $.ajax({
                 url: '/users/add-to-cart',
                 method: 'post',
                 data: { idservice: idservice },
-                //dataType: 'json',
-                success: function (data) {
-                    alert("Add to cart successfully!!");
+                dataType: 'json',
+                success: function (data, textStatus, jqXHR) {
+                    alert(data.message);
                 },
-                error: function (data) {
+                error: function (jqXHR, textStatus, errorThrown) {
                     alert("Can not add to cart...");
                 }
             })
-            alert("Add to cart successfully!!");
         }
 
         function paginationDisplay(page) {
@@ -316,11 +313,12 @@
                 url: $(location).attr("href"),
                 datatype: "json",
                 data: { page: page },
-                success: function (data) {
+                success: function (data, textStatus, jqXHR) {
+                    alert(data.message);
                     $("#service-partial").empty().append($(data).find("#service-partial").children());
                     $("#paginator-items").empty().append($(data).find("#paginator-items").children());
                 },
-                error: function (arg, data, value) {
+                error: function (jqXHR, textStatus, errorThrown) {
                     alert(page);
                 }
             });
@@ -337,21 +335,21 @@
                 dataType: 'text',
                 //Not return POST status
                 //success: function (data) {
-                    //alert("Remove from cart successfully!!");
-                    //$.get(location.href, function (data) {
-                       //$("#cart-item").empty().append($(data).find("#cart-item").children());
-                    //});
+                //alert("Remove from cart successfully!!");
+                //$.get(location.href, function (data) {
+                //$("#cart-item").empty().append($(data).find("#cart-item").children());
+                //});
 
-                    //$.get(location.href, function (data) {
-                        //$("#pre-checkout").empty().append($(data).find("#pre-checkout").children());
-                    //});
+                //$.get(location.href, function (data) {
+                //$("#pre-checkout").empty().append($(data).find("#pre-checkout").children());
+                //});
                 //},
                 error: function (data) {
                     alert("Can not remove...");
                 }
             });
             alert("Remove from cart successfully!!");
-            $.get(location.href, function (data) {  
+            $.get(location.href, function (data) {
                 $("#cart-item").empty().append($(data).find("#cart-item").children());
             });
 
@@ -365,7 +363,7 @@
             $.ajax({
                 url: '/users/increase-quantity',
                 method: 'post',
-                data: {idservice},
+                data: { idservice },
                 dataType: 'json',
                 success: function (data) {
                     alert("Edit successfully!!");
@@ -374,7 +372,7 @@
                     alert("Edit failed...");
                 }
             });
-            $.get(location.href, function (data) {  
+            $.get(location.href, function (data) {
                 $("#cart-item").empty().append($(data).find("#cart-item").children());
             });
 
@@ -387,7 +385,7 @@
             $.ajax({
                 url: '/users/decrease-quantity',
                 method: 'post',
-                data: {idservice},
+                data: { idservice },
                 dataType: 'json',
                 success: function (data) {
                     alert("Edit successfully!!");
@@ -396,7 +394,7 @@
                     alert("Edit failed...");
                 }
             });
-            $.get(location.href, function (data) {  
+            $.get(location.href, function (data) {
                 $("#cart-item").empty().append($(data).find("#cart-item").children());
             });
 
@@ -404,6 +402,33 @@
                 $("#pre-checkout").empty().append($(data).find("#pre-checkout").children());
             });
         }
+
+        //function processRating(idservice) {
+        //    const rate = $('input[name='rate']:checked').val();
+        //    const comment = $('textarea#message').val();
+        //    console.log(rate);
+        //    $.ajax({
+        //        url: '/users/rating',
+        //        method: 'post',
+        //        data: { rate:rate, 
+        //                comment:comment, 
+        //                idservice:idservice },
+        //        dataType: 'json',
+        //        success: function (data) {
+        //            alert("Comment successfully!!");
+        //        },
+        //        error: function (data) {
+        //            alert("Comment failed...");
+        //        }
+        //    });
+        //    $.get(location.href, function (data) {
+        //        $("#product-details").empty().append($(data).find("#product-details").children());
+        //    });
+//
+        //    $.get(location.href, function (data) {
+        //        $("#rating-section").empty().append($(data).find("#rating-section").children());
+        //    });
+        //}
     </script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"

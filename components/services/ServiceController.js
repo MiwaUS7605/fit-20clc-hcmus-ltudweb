@@ -75,11 +75,12 @@ class ServiceController {
     }
 
     async ratingproduct(req, res) {
-        const { rate,message, idservice } = req.body;
-
-        console.log(rate, message, idservice);
-
         try{ 
+            const { rate,message, idservice } = req.body;
+
+            console.log(rate, message, idservice);
+
+            
             let email = res.locals.user.email;
             //if (!email) return;
             
@@ -87,10 +88,9 @@ class ServiceController {
             await laundryService.rating(rate,message,idservice,iduser['idcustomer']);
             console.log(iduser);
         }catch(e){
-            res.render('users/shop-details', {error: e.message});
+            console.log(e.message);
             return;
         }
-        res.render('users/home');
     }
 }
 
