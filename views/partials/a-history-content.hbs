@@ -24,9 +24,9 @@
                     <div class="row">
                         <div class="col-8 d-md-flex mb-3">
                             <select name="filter" class="form-select shadow-none row border-top">
-                                <option value="0">Filter</option>
-                                <option value="1">Available orders</option>
-                                <option value="2">Unavailable orders</option>
+                                <option value="2">Filter</option>
+                                <option value="0">Available orders</option>
+                                <option value="1">Completed orders</option>
                             </select>
                         </div>
                         <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
@@ -36,6 +36,9 @@
                                 <option value="2">Latest order</option>
                             </select>
                         </div>
+                        <div class="col-md-3 col-sm-4 col-xs-6 ms-auto"></div>
+                        <button class="site-btn">REFRESH</button>
+                    </div>
                     <div class="row">
                 </form>
                 <div class="table-responsive">
@@ -52,15 +55,19 @@
                         </thead>
                         <tbody>
                             {{#each orders}}
-                                <tr>
-                                    <td></td>
-                                    <td>{{idorder}}</td>
-                                    <td>{{idcustomer}}</td>
-                                    <td class="txt-oflo">{{statusname}}</td>
-                                    <td><span class="text-success">{{time}}</span></td> 
-                                    <td>{{price}}</td>
-                                    <td><button class="site-btn">COMPLETE</button></td>
-                                </tr>
+                            <tr>
+                                <td></td>
+                                <td>{{idorder}}</td>
+                                <td>{{idcustomer}}</td>
+                                <td class="txt-oflo">{{statusname}}</td>
+                                <td><span class="text-success">{{time}}</span></td>
+                                <td>{{price}}</td>
+                                {{#if status}}
+                                {{else}}
+                                <td><button class="site-btn" value="{{idorder}}"
+                                        onclick="updateStatus(this.value)">COMPLETE</button></td>
+                                {{/if}}
+                            </tr>
                             {{/each}}
                         </tbody>
                     </table>
