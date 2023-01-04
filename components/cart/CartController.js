@@ -29,34 +29,51 @@ class CartController {
     }
 
     async addToCart(req, res, next) {
+        try {
+            let message = "Already in your cart";
+            
+            let email = res.locals.user.email;
+            if (!email) {
+                res.redirect('/');
+                return;
+            }
+            const idService = req.body.idservice;
+            if (!idService) return;
+    
+            const idUser = await authService.getUserIdByEmail(email);
+            const serviceFromUser = await laundryService.getServiceFromUser(idUser['idcustomer'], idService);
+            if (!serviceFromUser) {
+                await laundryService.addtocart(idUser['idcustomer'], idService);
+                message = "Successfully!";
+            }
+
+            res.json({message: message});
+            
+        }
+        catch(err) {
+            //Avoid exception from not logged in user
+            let message = "You are not logged in!";
+            res.json({message: message});
+        }
+       
+    }
+
+    async removeFromCart(req, res, next) {
         let email = res.locals.user.email;
         if (!email) {
             res.redirect('/');
             return;
         }
-        let message = "Already in your cart";
         const idService = req.body.idservice;
         if (!idService) return;
 
-        const idUser = await authService.getUserIdByEmail(email);
-        const serviceFromUser = await laundryService.getServiceFromUser(idUser['idcustomer'], idService);
-        if (!serviceFromUser) {
-            await laundryService.addtocart(idUser['idcustomer'], idService);
-            message = "Successfully!";
-        }
-        res.json({message: message});
-    }
-
-    async removeFromCart(req, res, next) {
-        const idService = req.body.idservice;
-        if (!idService) return;
-
-        let email = res.locals.user.email;
-        //if (!email) return;
+        let message = "Remove successfully!";
 
         const idUser = await authService.getUserIdByEmail(email);
         
         await laundryService.removefromcart(idUser['idcustomer'], idService);
+        
+        res.json({message: message});
     }
 
     async incrQuantity(req, res, next) {

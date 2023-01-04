@@ -20,3 +20,19 @@
 <script type="text/javascript" src="/admin/js/sort-service.js"></script>
 <script type="text/javascript" src="/admin/js/edit-service.js"></script>
 <script type="text/javascript" src="/admin/js/pagination.js"></script>
+<script>
+    function updateStatus(id) {
+        $.ajax({
+            url: '/admin/order-history',
+            method: 'post',
+            data: { id },
+            dataType: 'json',
+            success: function (data) {
+                alert("Edit successfully!!");
+            },
+            error: function (data) {
+                alert("Edit failed...");
+            }
+        });
+    }
+</script>
