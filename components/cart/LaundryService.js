@@ -1,4 +1,3 @@
-const e = require('express');
 const db = require('../../db');
 const authService = require('../auth/AuthService');
 
@@ -7,6 +6,14 @@ class LaundryService {
         //Using prepare statement to avoid SQL injection
         let query_str = "select * from `service` where idservice = ?";
         const result = await db.connection.execute(query_str, [id]);
+        return result[0][0];
+    }
+
+    async getServiceFromUser(idcustomer, idservice) {
+        //Using prepare statement to avoid SQL injection
+        let query_str = "select * from `cart` \
+                            where idservice = ? and idcustomer = ?";
+        const result = await db.connection.execute(query_str, [idservice, idcustomer]);
         return result[0][0];
     }
 
@@ -33,6 +40,21 @@ class LaundryService {
                      where idcustomer = ?";
         const result = await db.connection.execute(query_str, [userId]);
         return result[0];
+    }
+
+    async incrQuantity(idcustomer, idservice) {
+        let query_str = "update `cart`\
+                        set number = number + 1\
+                        where idcustomer = ? and idservice = ?";
+        await db.connection.execute(query_str, [idcustomer, idservice]);
+    }
+
+    async descQuantity(idcustomer, idservice) {
+        let query_str = "update `cart`\
+                        set number = IF(number - 1 > 0, number - 1, 1)\
+                        where idcustomer = ? and idservice = ?";
+                        
+        await db.connection.execute(query_str, [idcustomer, idservice]);
     }
 
     async getSubtotal(services) {

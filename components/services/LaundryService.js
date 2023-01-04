@@ -82,6 +82,21 @@ class LaundryService {
         const result = await db.connection.execute(query_str, [`%${name}%`, idtype, min, max]);
         return result[0];
     }
+
+    async rating(rate, message, idservice, idcustomer) {
+        await db.connection.execute('insert into `rating`(rate,message,idservice,idcustomer)\
+                                    values (?,?,?,?)', [rate, message, idservice, idcustomer]);
+    }
+
+    async getrating(idservice){
+        let query_str = "";
+        query_str = 'select * from `rating` where `idservice` = ?';
+
+        const result = await db.connection.execute(query_str, [idservice]);
+
+        console.log(result[0]);
+        return result[0];
+    }
 }
 
 module.exports = new LaundryService;

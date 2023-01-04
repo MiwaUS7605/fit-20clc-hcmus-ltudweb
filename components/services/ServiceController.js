@@ -1,4 +1,5 @@
 const laundryService = require('./LaundryService');
+const authService = require('../auth/AuthService');
 const createError = require('http-errors');
 const qs = require('qs');
 const Paginator = require('paginator');
@@ -50,7 +51,13 @@ class ServiceController {
             products = await laundryService.getNumber(4);
         }
         if (!products) return next(createError(404));
-        res.render('users/shop-details', { service,products});
+
+        let ratings = [];
+        
+        ratings = await laundryService.getrating(serviceId);
+        const countResult = Object.keys(ratings).length;
+        
+        res.render('users/shop-details', { service,products,ratings,countResult});
     }
 
     async featuredproducts(req, res, next) {
@@ -65,6 +72,25 @@ class ServiceController {
         if (!services) return next(createError(404));
         const { sort, ...withoutSort } = req.query;
         res.render('users/home',  { services, originalUrl: `${req.baseUrl}?${qs.stringify(withoutSort)}`});
+    }
+
+    async ratingproduct(req, res) {
+        const { rate,message, idservice } = req.body;
+
+        console.log(rate, message, idservice);
+
+        try{ 
+            let email = res.locals.user.email;
+            //if (!email) return;
+            
+            const iduser = await authService.getUserIdByEmail(email);
+            await laundryService.rating(rate,message,idservice,iduser['idcustomer']);
+            console.log(iduser);
+        }catch(e){
+            res.render('users/shop-details', {error: e.message});
+            return;
+        }
+        res.render('users/home');
     }
 }
 
