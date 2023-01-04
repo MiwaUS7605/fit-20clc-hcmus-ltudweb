@@ -9,6 +9,14 @@ class LaundryService {
         return result[0][0];
     }
 
+    async getServiceFromUser(idcustomer, idservice) {
+        //Using prepare statement to avoid SQL injection
+        let query_str = "select * from `cart` \
+                            where idservice = ? and idcustomer = ?";
+        const result = await db.connection.execute(query_str, [idservice, idcustomer]);
+        return result[0][0];
+    }
+
     // async checkcart(idcustomer, idservice) {
     //     let query_str = "select * from `cart` as c left join service as sv on c.idservice = sv.idservice\
     //                 where c.idcustomer = ?, c.idservice = ?";
@@ -43,7 +51,7 @@ class LaundryService {
 
     async descQuantity(idcustomer, idservice) {
         let query_str = "update `cart`\
-                        set number = number - 1\
+                        set number = IF(number - 1 > 0, number - 1, 1)\
                         where idcustomer = ? and idservice = ?";
                         
         await db.connection.execute(query_str, [idcustomer, idservice]);

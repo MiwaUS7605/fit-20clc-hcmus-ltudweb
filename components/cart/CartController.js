@@ -11,7 +11,7 @@ class CartController {
             let email = res.locals.user.email;
             if (!email) return;
             const idUser = await authService.getUserIdByEmail(email);
-    
+            
             let services = [];
             services = await laundryService.getcart(idUser['idcustomer']);
     
@@ -23,28 +23,28 @@ class CartController {
             res.render('users/shopping-cart', { services, sub_total});
 
         }catch(e){
-            res.render('users/shopping-cart', {error: e.message});
+            res.render('users/home', {error: e.message});
             return;
         }
     }
 
     async addToCart(req, res, next) {
+        let email = res.locals.user.email;
+        if (!email) {
+            res.redirect('/');
+            return;
+        }
+        let message = "Already in your cart";
         const idService = req.body.idservice;
         if (!idService) return;
 
-        const service = await laundryService.get(idService);
-        console.log(service);//
-        if (!service) return;
-
-        let email = res.locals.user.email;
-        if (!email) return;
-
         const idUser = await authService.getUserIdByEmail(email);
-
-        // const check = await laundryService.checkcart(idUser, idService);
-        // if (check.idservice) return;
-
-        await laundryService.addtocart(idUser['idcustomer'], idService);
+        const serviceFromUser = await laundryService.getServiceFromUser(idUser['idcustomer'], idService);
+        if (!serviceFromUser) {
+            await laundryService.addtocart(idUser['idcustomer'], idService);
+            message = "Successfully!";
+        }
+        res.json({message: message});
     }
 
     async removeFromCart(req, res, next) {
@@ -65,7 +65,7 @@ class CartController {
 
         let email = res.locals.user.email;
         if (!email) return;
-
+        
         const idUser = await authService.getUserIdByEmail(email);
         
         await laundryService.incrQuantity(idUser['idcustomer'], idService);
