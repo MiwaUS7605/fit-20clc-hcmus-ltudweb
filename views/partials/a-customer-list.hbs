@@ -61,10 +61,8 @@
                                 <th class="border-top-0">Ban/Unban</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {{#each accounts}}
-                            {{!-- {{#each_fromto accounts pagination_info.first_result pagination_info.last_result}} --}}
-                                <tr>
+                        <tbody id="table-pagination">
+                            {{#each_fromto accounts pagination_info.first_result pagination_info.last_result}}
                                     <td></td>
                                     <td class="txt-oflo">{{name}}</td>
                                     <td>{{phonenumber}}</td>
@@ -72,11 +70,38 @@
                                     <td><span class="text-success">{{email}}</span></td>
                                     <td><button class="site-btn">BAN</button></td>
                                 </tr>
-                            {{/each}}
+                            {{/each_fromto}}
                             
                         </tbody>
                     </table>
                 </div>
+                <div id="paginator-items" class="product__pagination text-center">
+
+                        {{!-- <a href="{{originalUrl}}&page=1">First</a> --}}
+
+                        {{#if pagination_info.has_previous_page}}
+                        <button class="service-btn" onclick="paginationDisplay(this.value)"
+                            value="{{pagination_info.previous_page}}">
+                            <a><i class="fa fa-long-arrow-left"></i></a>
+                        </button>
+                        {{/if}}
+
+                        {{#for pagination_info.first_page pagination_info.last_page 1 originalUrl}}
+                            <button class="service-btn" onclick="paginationDisplay(this.value)" value="{{@index}}">
+                                <a>{{@index}}</a>
+                            </button>
+                        {{/for}}
+
+                        {{#if pagination_info.has_next_page}}
+                        <button class="service-btn" onclick="paginationDisplay(this.value)"
+                            value="{{pagination_info.next_page}}">
+                            <a><i class="fa fa-long-arrow-right"></i></a>
+                        </button>
+
+                        {{/if}}
+
+                        {{!-- <a href="{{originalUrl}}&page={{pagination_info.total_pages}}">Last</a> --}}
+                    </div>
             </div>
         </div>
     </div>
