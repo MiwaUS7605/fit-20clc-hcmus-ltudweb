@@ -23,8 +23,8 @@ class AdminController {
     signin(req,res) {
         res.render('admin/signin', {layout: 'admin-layout'});
     }
-    signup(req,res) {
-        res.render('admin/signup', {layout: 'admin-layout'});
+    editprofile(req,res) {
+        res.render('admin/edit-profile', {layout: 'admin-layout'});
     }
     customerList(req,res) {
         res.render('admin/customer-list', {layout: 'admin-layout'});

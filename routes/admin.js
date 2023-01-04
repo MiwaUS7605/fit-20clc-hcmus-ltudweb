@@ -13,7 +13,7 @@ router.get('/chat', adminController.chat);
 router.get('/feedback', adminController.feedback);
 router.get('/google-map', adminController.location);
 router.get('/signin', adminController.signin);
-router.get('/signup', adminController.signup);
+router.get('/edit-profile', adminController.editprofile);
 router.get('/customer-list',customerListController.list);
 router.get('/service-list',serviceListController.list);
 router.post('/service-list',serviceListController.list);
