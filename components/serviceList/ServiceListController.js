@@ -106,10 +106,10 @@ class ServiceListController {
 
     async deleteService(req, res, next){
         console.log("delete service");
-        const {id}=req.body;
-        console.log(id);
+        const {idservice}=req.body;
+        console.log(idservice);
         try{
-            await serviceListRepo.deleteService(id);
+            await serviceListRepo.deleteService(idservice);
         }catch(e){
             res.render('/admin/service-list', { error: e.message });
             console.log("done");

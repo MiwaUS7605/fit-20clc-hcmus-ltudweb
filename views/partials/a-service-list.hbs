@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
             <div class="white-box">
-                <form action="">
+                <form>
 
                     <div class="row">
                         <div class="d-md-flex mb-6  ms-auto">
@@ -42,10 +42,10 @@
                         <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
                             <select name="sort" class="form-select shadow-none row border-top">
                                 <option value="0">Sort by</option>
-                                <option value="1">Latest</option>
-                                <option value="2">Ascending price</option>
-                                <option value="3">Descending price</option>
-                                <option value="4">Highest total purchase</option>
+                                <option value="1" onclick="sortSer(this.value)">Latest</option>
+                                <option value="2" onclick="sortSer(this.value)">Ascending price</option>
+                                <option value="3" onclick="sortSer(this.value)">Descending price</option>
+                                <option value="4" onclick="sortSer(this.value)">Highest total purchase</option>
                             </select>
                         </div>
                     </div>
@@ -68,7 +68,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                             <form method="post"></form>
                             {{#each services}}
                             {{!-- {{#each_fromto accounts pagination_info.first_result pagination_info.last_result}} --}}
                            
@@ -76,16 +75,16 @@
                             
                                 <tr class='clickable-row' data-href='/admin/service-list/edit'>
                                     <td></td>
-                                    <td name="id" value={{idservice}}>{{idservice}}</td>
+                                    <td>{{idservice}}</td>
                                     <td class="txt-oflo">{{servicename}}</td>
                                     <td>{{price}}</td>
                                     <td class="txt-oflo">{{typename}}</td>
                                     <td><span class="text-success">{{totalpurchase}}</span></td>
                                     <td>{{availability}}</td>
-                                    <td><button type="submit" class="site-btn" onclick="deleteService()">Delete</button></td>
+                                    <td><button class="site-btn" onclick="deleteService(this.value)" value={{idservice}}>Delete</button></td>
                                 </tr>
                             {{/each}}
-                            </form>
+                           
                             
                         </tbody>
                     </table>

@@ -39,8 +39,9 @@ class ServiceListRepository {
     async filter(name, sorttype) {
         {
             name = name ? name : '';
-            sorttype = sorttype ? sorttype : 1;
+            sorttype = (sorttype==0) ? sorttype : 1;
         }
+        console.log("sort type"+sorttype);
         let query_str;
         switch (sorttype) {
             case '1':
@@ -65,9 +66,8 @@ class ServiceListRepository {
                 break;
             default:
                 query_str= "select * from `service` as sv\
-                        where sv.servicename like ?\
-                        and sv.idtype like ?\
-                        and sv.price between ? and ?";
+                        where sv.servicename like ?";
+                        
                 break;
         }
         const result = await db.connection.execute(query_str, [`%${name}%`]);
