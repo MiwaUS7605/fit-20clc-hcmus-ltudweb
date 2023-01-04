@@ -39,34 +39,34 @@ class ServiceListRepository {
     async filter(name, sorttype) {
         {
             name = name ? name : '';
-            sorttype = (sorttype==0) ? sorttype : 1;
+            sorttype = sorttype ? sorttype : "1";
         }
         console.log("sort type"+sorttype);
         let query_str;
         switch (sorttype) {
             case '1':
-                query_str = "select * from `service` as sv\
-                                where sv.servicename like ?\
-                                order by sv.idservice desc";
+                query_str = "select * from `service` \
+                                where servicename like ? \
+                                order by idservice desc";
                 break;
             case '2':
-                query_str = "select * from `service` as sv\
-                                where sv.servicename like ?\
-                                order by sv.price asc";
+                query_str = "select * from `service` \
+                                where servicename like ? \
+                                order by price asc";
                 break;
             case '3':
-                query_str = "select * from `service` as sv\
-                                where sv.servicename like ?\
-                                order by sv.price desc";
+                query_str = "select * from `service` \
+                                where servicename like ? \
+                                order by price desc";
                 break;
             case '4':
-                query_str = "select * from `service` as sv\
-                                    where sv.servicename like ?\
-                                    order by sv.totalpurchase desc";
+                query_str = "select * from `service` \
+                                    where servicename like ? \
+                                    order by totalpurchase desc";
                 break;
             default:
-                query_str= "select * from `service` as sv\
-                        where sv.servicename like ?";
+                query_str= "select * from `service` \
+                        where servicename like ?";
                         
                 break;
         }

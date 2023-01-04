@@ -1,4 +1,5 @@
 const serviceListRepo = require('./ServiceListRepository');
+const serviceRepo=require('../services/LaundryService');
 const createError = require('http-errors');
 const qs = require('qs');
 const Paginator = require('paginator');
@@ -36,6 +37,10 @@ class ServiceListController {
         res.render('admin/create-info-service',{layout: 'admin-layout'});
     };
     async showEditService (req, res, next){
+        // const {idservice} =req.body;
+        // console.log(req.body);
+        // console.log("iddddd"+ idservice);
+        // const service =await serviceRepo.get(idservice);
         res.render('admin/edit-service',{layout: 'admin-layout'});
     };
     async showCreateImageService (req, res, next){
