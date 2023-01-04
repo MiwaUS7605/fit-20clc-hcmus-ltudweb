@@ -1,22 +1,50 @@
 <!-- ============================================================== -->
-<!-- Bread crumb and right sidebar toggle -->
-<!-- ============================================================== -->
-<div class="page-breadcrumb bg-white">
-    <div class="row align-items-center">
-        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Sign in</h4>
-        </div>
-    </div>  
-    <!-- /.col-lg-12 -->
-</div>
-<!-- ============================================================== -->
-<!-- End Bread crumb and right sidebar toggle -->
-<!-- ============================================================== -->
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
     <!-- ============================================================== -->
+    <form method="post" class="login-form spad" id="login-form">
+        <section>
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col">
+                        <div class="card card-registration my-4">
+                            <div class="row g-0">
+                                <div class="col-xl-6">
+                                    <div class="card-body p-md-5 text-black">
+                                        {{!-- {{#if error}}
+                                        <div class="text-danger error">
+                                            {{error}}
+                                        </div>
+                                        {{/if}} --}}
+                                        <h3 class="mb-5 text-uppercase">Sign in</h3>
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" for="email">Email</label>
+                                            <input type="text" name="email" id="email"
+                                                class="form-control form-control-lg" />
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" for="password">Password</label>
+                                            <input type="password" name="password" id="password"
+                                                class="form-control form-control-lg" />
+                                        </div>
 
+                                        <div class="row">
+                                            <div class="col-md-4 mb-4">
+                                                <div class="form-outline">
+                                                    <button type="submit" class="site-btn">Log in</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
 </div>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
