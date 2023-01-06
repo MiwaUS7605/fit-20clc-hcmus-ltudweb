@@ -81,6 +81,13 @@ class CheckoutRespository {
             await laundryService.removefromcart(service['idcustomer'], service['idservice']);
         }
     }
+
+    async getallmyorders(userId) {
+        let query_str = "select * from `order` as o join `orderstatus` as os on o.status = os.idstatus\
+                        where o.idcustomer = ?";
+        const result = await db.connection.execute(query_str, [userId]);
+        return result[0];
+    }
 }
 
 module.exports = new CheckoutRespository;

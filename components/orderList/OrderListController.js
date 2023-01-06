@@ -13,7 +13,7 @@ class OrderListController {
 
         if (statusFilter||sortFilter) {
             if (statusFilter==2){
-                orders = await orderListRepo.getAll();
+                orders = await orderListRepo.sort(sortFilter);
             }
             else {
                 orders = await orderListRepo.filter(statusFilter,sortFilter);

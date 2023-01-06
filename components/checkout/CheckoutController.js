@@ -21,7 +21,9 @@ class CheckoutController {
         }
         var sub_total = await laundryService.getSubtotal(services);
 
-        res.render('users/checkout', { services, sub_total});
+        let orders = await checkoutService.getAllMyOrders(idUser['idcustomer']);
+
+        res.render('users/checkout', { services, sub_total, orders});
     }
 
     async placeOrder(req,res,next) {
