@@ -1,80 +1,86 @@
-<form method="post" class="create-form spad">
-<section>
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col">
-            <div class="card card-registration my-4">
-            <div class="row g-0">
-                <div class="col-xl-6">
-                <div class="card-body p-md-5 text-black">
-                    {{#if error}}
-                        <div class="text-danger error">
-                        {{error}}
-                        </div>
-                    {{/if}}
-                    <h3 class="mb-5 text-uppercase">Create a service</h3>
-                    <div class="row">
-                    <div class="col-md-9 mb-6">
-                        <div class="form-outline">
-                        <label class="form-label" for="name">Name<span class="required">*</span></label>
-                        <input type="text" name="name" id="name" class="form-control form-control-lg" />
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-1">
-                        <div class="form-outline">
-                        <label class="form-label" for="price">Price<span class="required">*</span></label>
-                        <input type="text" name="price" id="price" class="form-control form-control-lg" />
-                        </div>
-                    </div>
-                    </div>
-                    
-                    <div class="row">
-                        <span class="required">*</span>
-                    <div class="col-md-6 mb-4 ">
-                        <div class="form-outline mb-4">
-                            
-                            <select name="type" class="form-select shadow-none border-top">
-                                
-                                <option value="0">Choose type</option>
-                                <option value="1">Dry cleaning</option>
-                                <option value="2">Laundry cleaning</option>
-                                <option value="3">Shoes cleaning</option>
-                                <option value="4">Furniture cleaning</option>
-                                <option value="5">Stuffed dolls cleaning</option>
-                            </select>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="textAreaExample">Image link</label>
-                        <input class="form-control" id="imageLink" name="imageLink"></input>
-                        
-                    </div>
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="textAreaExample">Description</label>
-                        <textarea class="form-control" id="description" name="description" rows="6"></textarea>
-                        
-                    </div>
-                    
-                    <div class="row">
-                            <div class="col-md-9 mb-3 ">
-                                <div class="form-outline">
-                                    <button class="site-btn cancel-btn link-btn float-right"><a href="/admin/service-list" class="link-btn">Cancel</a></button>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mb-1">
-                                <div class="form-outline">
-                                    <button type="submit" class="site-btn link-btn">Next</button>
+<form method="post" class="create-form spad" id="create-service-form">
+    <section>
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col">
+                    <div class="card card-registration my-12">
+                        <div class="row g-0">
+                            <div class="col-xl-12">
+                                <div class="card-body p-md-5 text-black">
+                                    {{#if error}}
+                                    <div class="text-danger error">
+                                        {{error}}
+                                    </div>
+                                    {{/if}}
+                                    <h3 class="mb-5 text-uppercase">Create a service</h3>
+                                    <div class="row">
+                                        <div class="col-md-9 mb-6">
+                                            <div class="form-outline">
+                                                <label class="form-label" for="name">Name<span
+                                                        class="required">*</span></label>
+                                                <input type="text" name="name" id="name"
+                                                    class="form-control form-control-lg" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-1">
+                                            <div class="form-outline">
+                                                <label class="form-label" for="price">Price<span
+                                                        class="required">*</span></label>
+                                                <input type="number" name="price" id="price"
+                                                    class="form-control form-control-lg" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        {{!-- <span class="required">*</span> --}}
+                                        <div class="col-md-6 mb-4 ">
+                                            <div class="form-outline mb-4">
+
+                                                <select name="type" class="form-select shadow-none border-top">
+
+                                                    <option value="0">Choose type</option>
+                                                    <option value="1">Dry cleaning</option>
+                                                    <option value="2">Laundry cleaning</option>
+                                                    <option value="3">Shoes cleaning</option>
+                                                    <option value="4">Furniture cleaning</option>
+                                                    <option value="5">Stuffed dolls cleaning</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="textAreaExample">Image link</label>
+                                        <input class="form-control" id="imageLink" name="imageLink"></input>
+
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="textAreaExample">Description</label>
+                                        <textarea class="form-control" id="description" name="description"
+                                            rows="6"></textarea>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-9 mb-3 ">
+                                            <div class="form-outline">
+                                                <button class="site-btn cancel-btn link-btn float-right"><a
+                                                        href="/admin/service-list" class="link-btn">Cancel</a></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-1">
+                                            <div class="form-outline">
+                                                <button type="submit" class="site-btn link-btn">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                </div>
-            </div>
             </div>
         </div>
         </div>
-    </div>
     </section>
 </form>

@@ -2,9 +2,9 @@ function editSer(idservice) {
     alert(idservice);
     $.ajax({
         url: '/admin/service-list/edit',
-        method: 'get',
+        method: 'post',
         data: { idservice: idservice },
-        dataType: 'json'
+        //dataType: 'json'
         // success: function (data) {
         //     alert("Delete service successfully!!");
         // },

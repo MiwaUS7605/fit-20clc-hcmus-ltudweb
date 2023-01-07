@@ -31,16 +31,14 @@
                     <div class="row">
                         <div class="d-md-flex mb-6  ms-auto">
                         <div class="app-search d-none d-md-block me-8">
-                            <input name="search" type="text" placeholder="Search account..." class="">
+                            <input name="search" type="text" placeholder="Search service..." class="">
                             <button type="submit" class="site-btn"><i class="fa fa-search"></i></button>
-                            {{!-- <a href="" class="active">
-                                <i class="fa fa-search"></i>
-                            </a> --}}
+                           
                         </div>
                         <div class="col-8 d-md-flex mb-3">
-                        {{!-- <h3 class="box-title mb-0">Sort by</h3> --}}
+                        
                         <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
-                            <select name="sort" class="form-select shadow-none row border-top">
+                            <select name="sort" class="form-select shadow-none row border-top" onchange="sortSer(this.value)">
                                 <option value="0">Sort by</option>
                                 <option value="1" onclick="sortSer(this.value)">Latest</option>
                                 <option value="2" onclick="sortSer(this.value)">Ascending price</option>
@@ -73,7 +71,7 @@
                            
 
                             
-                                <tr class='clickable-row'  value="{{idservice}}" data-href='/admin/service-list/edit'>
+                                <tr class='clickable-row'  value="{{idservice}}" data-href='/admin/service-list/edit?idservice={{idservice}}'>
                                     <td></td>
                                     <td>{{idservice}}</td>
                                     <td class="txt-oflo">{{servicename}}</td>
@@ -81,8 +79,8 @@
                                     <td class="txt-oflo">{{typename}}</td>
                                     <td><span class="text-success">{{totalpurchase}}</span></td>
                                     <td>{{availability}}</td>
-                                    <td><button class="btn-info site-btn " onclick="editSer(this.value)" value="{{idservice}}" href='/admin/service-list/edit'>Edit</button></td>
-                                    <td><button class="site-btn btn-danger" onclick="deleteService(this.value)" value="{{idservice}}" >Delete</button></td>
+                                    
+                                    <td><button class="site-btn btn-danger delete-btn" onclick="deleteService(this.value)" value="{{idservice}}" >Delete</button></td>
                                 </tr>
                             {{/each_fromto}}
                            

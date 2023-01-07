@@ -22,9 +22,11 @@ router.post('/service-list/create-info',serviceListController.createService);
 router.get('/service-list/create-image',serviceListController.showCreateImageService);
 router.post('/service-list/create-image',serviceListController.insertImg);
 router.get('/service-list/edit',serviceListController.showEditService);
+router.post('/service-list/edit',serviceListController.editService);
 router.post('/service-list/delete',serviceListController.deleteService);
-
+router.post('/service-list/delete-image',serviceListController.deleteImage);
 router.get('/order-history',orderListController.list);
 router.post('/order-history',orderListController.updatestatus);
+
 
 module.exports = router;

@@ -1,135 +1,134 @@
-<form method="post" class="create-form spad">
-<section>
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col">
-            <div class="card card-registration my-4">
-            <div class="row g-0">
-                <div class="col-xl-6">
-                <div class="card-body p-md-5 text-black">
-                    {{#if error}}
-                        <div class="text-danger error">
-                        {{error}}
-                        </div>
-                    {{/if}}
-                    <h1 class="mb-5 text-uppercase">Edit service</h1>
-    
-                    {{!-- <div class="form-outline mb-4">
-                    <label class="form-label" for="username">Name</label>
-                    <input type="text" name="name" id="username" class="form-control form-control-lg" />
-                    </div>
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="email">Price</label>
-                        <input type="text" name="email" id="email" class="form-control form-control-lg" />
-                    </div> --}}
-                    <div class="row">
-                    <div class="col-md-9 mb-6">
-                        <div class="form-outline">
-                        <label class="form-label" for="password">Name</label>
-                        <input type="password" name="password" id="password" class="form-control form-control-lg" placeholder="{{service.name}}"/>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-1">
-                        <div class="form-outline">
-                        <label class="form-label" for="confirm_password">Price</label>
-                        <input type="password" name="confirmpassword"id="confirm_password" class="form-control form-control-lg" />
-                        </div>
-                    </div>
-                    </div>
-                    
-                    <div class="row">
-                    <div class="col-md-6 mb-4 ">
-                        <div class="form-outline mb-4">
-                            <select name="sort" class="form-select shadow-none border-top">
-                                <option value="0">Choose type</option>
-                                <option value="1">Dry cleaning</option>
-                                <option value="2">Laundry cleaning</option>
-                                <option value="3">Shoes cleaning</option>
-                                <option value="4">Furniture cleaning</option>
-                                <option value="5">Stuffed dolls cleaning</option>
-                            </select>
-                        </div>
-                    </div>
-                    </div>
+<form  action="" method="post" class="create-form spad">
+    <section>
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col">
+                    <div class="card card-registration my-4">
+                        <div class="row g-0">
+                            <div class="col-xl-12">
+                                <div class="card-body p-md-5 text-black">
+                                    {{#if error}}
+                                    <div class="text-danger error">
+                                        {{error}}
+                                    </div>
+                                    {{/if}}
+                                    <h1 class="mb-5 text-uppercase" >Edit service</h1>
+
+                                    <div class="row">
+                                        <div class="col-md-9 mb-6">
+                                            <div class="form-outline">
+                                                <label class="form-label" for="name">Name</label>
+                                                <input type="text" name="name" id="name"
+                                                    class="form-control form-control-lg"
+                                                    placeholder="{{service.servicename}}" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-1">
+                                            <div class="form-outline">
+                                                <label class="form-label" for="price">Price</label>
+                                                <input type="number" name="price" id="price"
+                                                    class="form-control form-control-lg"
+                                                    placeholder="{{service.price}}" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4 ">
+                                            <div class="form-outline mb-4">
+                                                <select name="type" class="form-select shadow-none border-top">
+                                                    <option value="0">Choose type</option>
+                                                    <option value="1">Dry cleaning</option>
+                                                    <option value="2">Laundry cleaning</option>
+                                                    <option value="3">Shoes cleaning</option>
+                                                    <option value="4">Furniture cleaning</option>
+                                                    <option value="5">Stuffed dolls cleaning</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
 
 
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="textAreaExample">Description</label>
-                        <textarea class="form-control" id="description" name="description" rows="6"></textarea>
-                    </div>
-                    <br><br>
-                    <h3> IMAGE LIST </h3>
-                     <div class="table-responsive">
-                    <table class="table no-wrap">
-                        <thead>
-                            <tr>
-                                <th class="border-top-0">No.</th>
-                                <th class="border-top-0">Name</th>
-                                <th class="border-top-0">Phone number</th>
-                                <th class="border-top-0">Address</th>
-                                <th class="border-top-0">Email</th>
-                                <th class="border-top-0">Ban/Unban</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each accounts}}
-                            {{!-- {{#each_fromto accounts pagination_info.first_result pagination_info.last_result}} --}}
-                                <tr>
-                                    <td></td>
-                                    <td class="txt-oflo">{{name}}</td>
-                                    <td>{{phonenumber}}</td>
-                                    <td class="txt-oflo">{{address}}</td>
-                                    <td><span class="text-success">{{email}}</span></td>
-                                    <td><button class="site-btn">BAN</button></td>
-                                </tr>
-                            {{/each}}
-                            
-                        </tbody>
-                    </table>
-                    <br><br>
-                    <h3>ADD IMAGE</h3>
-                    <div class="table-responsive">
-                        <form method="post">
-                        <section>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No.</th>
-                                        <th scope="col">Image link</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                    <tr>
-                        
-                                        <td><input class="row-data form-control rounded-0" type="text" id="imageLink" name="imageLink" placeholder="image link"></td>
-                                        <td><button type="submit" class="btn site-btn rounded-0" id ="deleteRow"><i class="fa fa-plus"></i></button></td>
-                                    </tr>
-                                </thead>
-                                
-                            </table>
-                        </section>
-                            
-                        </form>
-                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="textAreaExample">Description</label>
+                                        <textarea class="form-control" id="description" name="description" rows="6"
+                                            placeholder="{{service.description}}"></textarea>
+                                    </div>
+                                    <br><br>
+                                    <h3> IMAGE LIST </h3>
+                                    <div class="table-responsive">
+                                        <table class="table no-wrap">
+                                            <thead>
+                                                <tr>
+                                                    <th class="border-top-0">No.</th>
+                                                    <th class="border-top-0">Image link</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{!-- {{#if imageList}} --}}
+                                                {{#each imageList}}
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="txt-oflo">{{image}}</td>
+                                                    <td><button class="btn rounded-0"  id ={{idservice}} value={{image}} class="fa fa-trash" onclick="deleteImage(event)">Delete</button></td>
+                                                </tr>
+                                                {{/each}}
+                                                {{!-- {{/if}} --}}
 
-                        <div class="row">
-                            <div class="col-md-9 mb-3 ">
-                                <div class="form-outline">
-                                    <button type="submit" class="site-btn cancel-btn link-btn float-right"><a href="/admin/service-list" class="link-btn">Cancel</a></button>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mb-1">
-                                <div class="form-outline">
-                                    <button type="submit" class="site-btn ">Save changes</button>
+                                            </tbody>
+                                        </table>
+                                        <br><br>
+                                        <h3>ADD IMAGE</h3>
+                                        <div class="table-responsive">
+                                            <form method="post">
+                                                <section>
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">No.</th>
+                                                                <th scope="col">Image link</th>
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                            <tr>
+
+                                                                <td><input class="row-data form-control rounded-0"
+                                                                        type="text" id="imageLink" name="imageLink"
+                                                                        placeholder="image link"></td>
+                                                                <td><button type="submit" class="btn site-btn rounded-0"
+                                                                        id="deleteRow" name="submit" value="add">Add</button>
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                        </thead>
+
+                                                    </table>
+                                                </section>
+
+                                            </form>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-9 mb-3 ">
+                                                <div class="form-outline">
+                                                    <button type="submit"
+                                                        class="site-btn cancel-btn link-btn float-right"><a
+                                                            href="/admin/service-list"
+                                                            class="link-btn">Cancel</a></button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-1">
+                                                <div class="form-outline">
+                                                    <button type="submit" class="site-btn" name="submit" value="save">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                </div>
-            </div>
             </div>
         </div>
-        </div>
-    </div>
     </section>
 </form>

@@ -97,6 +97,33 @@ class LaundryService {
         console.log(result[0]);
         return result[0];
     }
+
+    async getService(id) {
+        console.log("ID: "+id);
+        let query_str = "select * \
+                         from `service` \
+                         where idservice =?";
+        console.log("herrrrrrr");
+        const result = await db.connection.execute(query_str, [id]);
+        return result[0][0];           
+    }
+
+    async getImagelist(id) {
+        try
+        {
+            console.log("ID: "+id);
+            let query_str = "select * \
+                            from `image` \
+                            where idservice = ?";
+            console.log("himmmm");
+            const result = await db.connection.execute(query_str, [id]);
+            console.log("resukt"+ result[0]);
+            return result[0];
+        }
+        catch(e){
+            //console.log(e);
+        }           
+    }
 }
 
 module.exports = new LaundryService;

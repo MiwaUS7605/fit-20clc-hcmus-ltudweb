@@ -4,7 +4,10 @@ function sortSer(type) {
         method: 'get',
         data: { sort: type }
         //dataType: 'json',
-        // success: function (data) {
+        // success: function(data) {
+        //     resizeBy.redirect
+        // }
+        
         //     alert("Delete service successfully!!");
         // },
         // error: function (data) {

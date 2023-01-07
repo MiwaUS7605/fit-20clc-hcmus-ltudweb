@@ -10438,3 +10438,6 @@ tr td:first-child:before
   color: red;
 
 }
+.delete-btn{
+  background: red;
+}

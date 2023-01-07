@@ -5,6 +5,11 @@
     <br><br>
     <div class="row">
         <div class="col-lg-10 col-md-4 col-sm-4 col-xs-12">
+                {{#if error}}
+                    <div class="text-danger error">
+                        {{error}}
+                    </div>
+                {{/if}}
                 <h4 class="page-title">ADD IMAGE</h4>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 align-content-end">
@@ -50,7 +55,7 @@
                                     <tr>
                         
                                         <td><input class="row-data form-control rounded-0" type="text" id="imageLink" name="imageLink" placeholder="image link"></td>
-                                        <td><button type="submit" class="btn site-btn rounded-0" id ="deleteRow"><i class="fa fa-plus"></i></button></td>
+                                        <td><button type="submit" class="btn site-btn rounded-0" ><i class="fa fa-plus"></i></button></td>
                                     </tr>
                                 </thead>
                                 
