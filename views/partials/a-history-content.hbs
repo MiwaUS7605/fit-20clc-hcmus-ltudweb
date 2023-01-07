@@ -49,7 +49,7 @@
                                 <th class="border-top-0">ID Order</th>
                                 <th class="border-top-0">ID Customer</th>
                                 <th class="border-top-0">Status</th>
-                                <th class="border-top-0">Date</th>
+                                {{!-- <th class="border-top-0">Date</th> --}}
                                 <th class="border-top-0">Price</th>
                             </tr>
                         </thead>
@@ -60,8 +60,8 @@
                                 <td>{{idorder}}</td>
                                 <td>{{idcustomer}}</td>
                                 <td class="txt-oflo">{{statusname}}</td>
-                                <td><span class="text-success">{{time}}</span></td>
-                                <td>{{price}}</td>
+                                {{!-- <td><span class="text-success">{{time}}</span></td> --}}
+                                <td>{{totalprice}}</td>
                                 {{#if status}}
                                 {{else}}
                                 <td><button class="site-btn" value="{{idorder}}"

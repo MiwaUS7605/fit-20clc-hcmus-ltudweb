@@ -7,15 +7,29 @@ class OrderListRepository {
         return result[0];
     }
 
-    async sorttype(status, number) {
-        //Using prepare statement to avoid SQL injection
-        let query_str = 'select * from `order` as o join `orderstatus` as os on o.status = os.idstatus' +
-            'where os.idstatus = ? ' +
-            // 'order by o.time desc ' +
-            'limit ?';
-        const result = await db.connection.execute(query_str, [status, number]);
+    async sort(sorttype) {
+        {
+            sorttype = sorttype ? sorttype : 0;
+        }
+        let query_str = "select * from `order` as o join `orderstatus` as os on o.status = os.idstatus";
+
+        switch (sorttype) {
+            case '1'://oldest order
+                query_str = "select * from `order` as o join `orderstatus` as os on o.status = os.idstatus\
+                                        order by idcustomer asc";
+                break;
+            case '2': //latest order
+                query_str = "select * from `order` as o join `orderstatus` as os on o.status = os.idstatus\
+                                        order by idcustomer desc";
+                break;
+            default:
+                break;
+        }
+
+        const result = await db.connection.execute(query_str);
         return result[0];
     }
+
     async filter(status, sorttype) {
         {
             status = status ? status : '';

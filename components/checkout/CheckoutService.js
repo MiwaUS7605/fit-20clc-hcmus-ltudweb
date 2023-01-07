@@ -10,6 +10,10 @@ class CheckoutService {
     async placeOrder(services, checkoutForm) {
         return checkoutRepository.placeorder(services, checkoutForm);
     }
+
+    async getAllMyOrders(userId){
+        return checkoutRepository.getallmyorders(userId);
+    }
 }
 
 module.exports = new CheckoutService;
