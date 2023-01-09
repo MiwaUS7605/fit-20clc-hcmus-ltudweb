@@ -11,7 +11,7 @@ async function db_connect() {
     database: process.env.DB_NAME
   })
 
-  console.log("Connected\n");
+  console.log("Connected to database successfully\n");
 }
 
 db_connect();
